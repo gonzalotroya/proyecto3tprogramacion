@@ -36,6 +36,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class PantallaLogin extends JPanel {
 	private Ventana ventana;
@@ -44,82 +46,46 @@ public class PantallaLogin extends JPanel {
 
 	public PantallaLogin(Ventana v) {
 		this.ventana = v;
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 101, 0, 92, 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 105, 74, 0, 0 };
-		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-				Double.MIN_VALUE };
-		setLayout(gridBagLayout);
+		setLayout(null);
 
 		JLabel labelTitulo = new JLabel("Login");
+		labelTitulo.setForeground(new Color(0, 102, 255));
+		labelTitulo.setBounds(255, 0, 92, 45);
 		labelTitulo.setFont(new Font("Liberation Mono", Font.BOLD, 35));
-		GridBagConstraints gbc_labelTitulo = new GridBagConstraints();
-		gbc_labelTitulo.gridwidth = 5;
-		gbc_labelTitulo.insets = new Insets(0, 0, 5, 5);
-		gbc_labelTitulo.gridx = 0;
-		gbc_labelTitulo.gridy = 0;
-		add(labelTitulo, gbc_labelTitulo);
+		add(labelTitulo);
 
 		JLabel labelUsuario = new JLabel("Usuario");
-		GridBagConstraints gbc_labelUsuario = new GridBagConstraints();
-		gbc_labelUsuario.anchor = GridBagConstraints.WEST;
-		gbc_labelUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_labelUsuario.gridx = 1;
-		gbc_labelUsuario.gridy = 3;
-		add(labelUsuario, gbc_labelUsuario);
+		labelUsuario.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelUsuario.setForeground(new Color(51, 102, 255));
+		labelUsuario.setBounds(73, 144, 90, 14);
+		add(labelUsuario);
 
 		campoUsuario = new JTextField();
-		GridBagConstraints gbc_campoUsuario = new GridBagConstraints();
-		gbc_campoUsuario.gridwidth = 2;
-		gbc_campoUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_campoUsuario.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoUsuario.gridx = 2;
-		gbc_campoUsuario.gridy = 3;
-		add(campoUsuario, gbc_campoUsuario);
+		campoUsuario.setBounds(196, 141, 150, 20);
+		add(campoUsuario);
 		campoUsuario.setColumns(10);
 
 		JLabel labelContraseña = new JLabel("Contraseña");
-		GridBagConstraints gbc_labelContraseña = new GridBagConstraints();
-		gbc_labelContraseña.anchor = GridBagConstraints.WEST;
-		gbc_labelContraseña.insets = new Insets(0, 0, 5, 5);
-		gbc_labelContraseña.gridx = 1;
-		gbc_labelContraseña.gridy = 4;
-		add(labelContraseña, gbc_labelContraseña);
+		labelContraseña.setForeground(new Color(51, 102, 255));
+		labelContraseña.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelContraseña.setBounds(73, 169, 78, 14);
+		add(labelContraseña);
 
 		campoContraseña = new JPasswordField();
-		GridBagConstraints gbc_campoContraseña = new GridBagConstraints();
-		gbc_campoContraseña.gridwidth = 2;
-		gbc_campoContraseña.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoContraseña.insets = new Insets(0, 0, 5, 5);
-		gbc_campoContraseña.gridx = 2;
-		gbc_campoContraseña.gridy = 4;
-		add(campoContraseña, gbc_campoContraseña);
+		campoContraseña.setBounds(196, 166, 150, 20);
+		add(campoContraseña);
 
 		JButton botonLogin = new Boton("Login");
+		botonLogin.setBounds(95, 243, 251, 55);
 		botonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		botonLogin.setText("Login");
-
-		GridBagConstraints gbc_botonLogin = new GridBagConstraints();
-		gbc_botonLogin.fill = GridBagConstraints.HORIZONTAL;
-		gbc_botonLogin.gridwidth = 3;
-		gbc_botonLogin.insets = new Insets(0, 0, 5, 5);
-		gbc_botonLogin.gridx = 1;
-		gbc_botonLogin.gridy = 6;
-		add(botonLogin, gbc_botonLogin);
-
-		JButton botonAtras = new BotonAzul("Atrás");
-		botonAtras.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla("login");
-			}
-		});
+		add(botonLogin);
 		
 		JButton botonRegistrarse = new Boton("Registrarse");
+		botonRegistrarse.setBounds(95, 348, 251, 55);
 		botonRegistrarse.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -130,18 +96,22 @@ public class PantallaLogin extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		GridBagConstraints gbc_botonRegistrarse = new GridBagConstraints();
-		gbc_botonRegistrarse.gridwidth = 3;
-		gbc_botonRegistrarse.fill = GridBagConstraints.HORIZONTAL;
-		gbc_botonRegistrarse.insets = new Insets(0, 0, 5, 5);
-		gbc_botonRegistrarse.gridx = 1;
-		gbc_botonRegistrarse.gridy = 7;
-		add(botonRegistrarse, gbc_botonRegistrarse);
-		GridBagConstraints gbc_botonAtras = new GridBagConstraints();
-		gbc_botonAtras.anchor = GridBagConstraints.EAST;
-		gbc_botonAtras.gridx = 5;
-		gbc_botonAtras.gridy = 8;
-		add(botonAtras, gbc_botonAtras);
+		add(botonRegistrarse);
+		
+				JButton botonAtras = new BotonAzul("Atrás");
+				botonAtras.setBounds(416, 431, 135, 55);
+				botonAtras.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						ventana.cambiarAPantalla("login");
+					}
+				});
+				add(botonAtras);
+				
+				JLabel imagenFondo = new JLabel("");
+				imagenFondo.setIcon(new ImageIcon("C:\\Users\\Gonza\\eclipse-workspace\\broker\\grafico.jpg"));
+				imagenFondo.setBounds(0, 0, 602, 486);
+				add(imagenFondo);
 
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override

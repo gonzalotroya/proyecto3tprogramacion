@@ -29,7 +29,6 @@ public class BotonAzul extends Boton{
 		this.setForeground(Color.gray);
 		this.setBackground(Color.blue);
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        this.setBounds(445, 212, 89, 51);
 
 	}
 

@@ -15,12 +15,12 @@ public class Ventana extends JFrame{
 		pantallas.put("login", new PantallaLogin(this));
 		pantallas.put("registro", new PantallaRegistro(this));
 		
-		this.setBounds(1000,1000, 1000, 1000);
+		this.setBounds(1920,800,800,800);
 		this.setLocationRelativeTo(null);
 		this.setIconImage(new ImageIcon("./icono.png").getImage());
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setTitle("Ventana");
+		this.setTitle("Broker");
 		this.setContentPane(this.pantallas.get("login"));
 		this.setResizable(false);
 		this.setVisible(true);

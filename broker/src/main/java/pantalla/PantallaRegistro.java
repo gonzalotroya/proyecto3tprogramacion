@@ -32,6 +32,8 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class PantallaRegistro extends JPanel {
 	private Ventana ventana;
@@ -42,162 +44,101 @@ public class PantallaRegistro extends JPanel {
 
 	public PantallaRegistro(Ventana v) {
 		this.ventana = v;
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 101, 0, 92, 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-				Double.MIN_VALUE };
-		setLayout(gridBagLayout);
+		setLayout(null);
 
 		JLabel labelTitulo = new JLabel("Registro");
+		labelTitulo.setForeground(new Color(51, 204, 255));
+		labelTitulo.setBounds(163, 0, 140, 45);
 		labelTitulo.setFont(new Font("Liberation Mono", Font.BOLD, 35));
-		GridBagConstraints gbc_labelTitulo = new GridBagConstraints();
-		gbc_labelTitulo.gridwidth = 5;
-		gbc_labelTitulo.insets = new Insets(0, 0, 5, 5);
-		gbc_labelTitulo.gridx = 0;
-		gbc_labelTitulo.gridy = 0;
-		add(labelTitulo, gbc_labelTitulo);
+		add(labelTitulo);
 
 		JLabel labelEmail = new JLabel("Email");
+		labelEmail.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelEmail.setForeground(new Color(51, 204, 255));
+		labelEmail.setBounds(75, 111, 145, 14);
 		labelEmail.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_labelEmail = new GridBagConstraints();
-		gbc_labelEmail.fill = GridBagConstraints.HORIZONTAL;
-		gbc_labelEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_labelEmail.gridx = 1;
-		gbc_labelEmail.gridy = 2;
-		add(labelEmail, gbc_labelEmail);
+		add(labelEmail);
 
 		campoEmail = new JTextField();
-		GridBagConstraints gbc_campoEmail = new GridBagConstraints();
-		gbc_campoEmail.gridwidth = 2;
-		gbc_campoEmail.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_campoEmail.gridx = 2;
-		gbc_campoEmail.gridy = 2;
-		add(campoEmail, gbc_campoEmail);
+		campoEmail.setBounds(225, 108, 117, 20);
+		add(campoEmail);
 		campoEmail.setColumns(10);
 
 		JLabel labelUsuario = new JLabel("Usuario");
-		GridBagConstraints gbc_labelUsuario = new GridBagConstraints();
-		gbc_labelUsuario.anchor = GridBagConstraints.WEST;
-		gbc_labelUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_labelUsuario.gridx = 1;
-		gbc_labelUsuario.gridy = 3;
-		add(labelUsuario, gbc_labelUsuario);
+		labelUsuario.setForeground(new Color(51, 204, 255));
+		labelUsuario.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelUsuario.setBounds(75, 136, 85, 14);
+		add(labelUsuario);
 
 		campoUsuario = new JTextField();
-		GridBagConstraints gbc_campoUsuario = new GridBagConstraints();
-		gbc_campoUsuario.gridwidth = 2;
-		gbc_campoUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_campoUsuario.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoUsuario.gridx = 2;
-		gbc_campoUsuario.gridy = 3;
-		add(campoUsuario, gbc_campoUsuario);
+		campoUsuario.setBounds(225, 133, 117, 20);
+		add(campoUsuario);
 		campoUsuario.setColumns(10);
 
 		JLabel labelContraseña = new JLabel("Contraseña");
-		GridBagConstraints gbc_labelContraseña = new GridBagConstraints();
-		gbc_labelContraseña.anchor = GridBagConstraints.WEST;
-		gbc_labelContraseña.insets = new Insets(0, 0, 5, 5);
-		gbc_labelContraseña.gridx = 1;
-		gbc_labelContraseña.gridy = 4;
-		add(labelContraseña, gbc_labelContraseña);
+		labelContraseña.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelContraseña.setForeground(new Color(51, 204, 255));
+		labelContraseña.setBounds(75, 161, 105, 14);
+		add(labelContraseña);
 
 		campoContraseña = new JPasswordField();
-		GridBagConstraints gbc_campoContraseña = new GridBagConstraints();
-		gbc_campoContraseña.gridwidth = 2;
-		gbc_campoContraseña.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoContraseña.insets = new Insets(0, 0, 5, 5);
-		gbc_campoContraseña.gridx = 2;
-		gbc_campoContraseña.gridy = 4;
-		add(campoContraseña, gbc_campoContraseña);
+		campoContraseña.setBounds(225, 158, 117, 20);
+		add(campoContraseña);
 
 		JLabel labelFechaNacimiento = new JLabel("FechaNacimiento");
-		GridBagConstraints gbc_labelFechaNacimiento = new GridBagConstraints();
-		gbc_labelFechaNacimiento.anchor = GridBagConstraints.WEST;
-		gbc_labelFechaNacimiento.insets = new Insets(0, 0, 5, 5);
-		gbc_labelFechaNacimiento.gridx = 1;
-		gbc_labelFechaNacimiento.gridy = 5;
-		add(labelFechaNacimiento, gbc_labelFechaNacimiento);
+		labelFechaNacimiento.setForeground(new Color(51, 204, 255));
+		labelFechaNacimiento.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelFechaNacimiento.setBounds(75, 186, 130, 14);
+		add(labelFechaNacimiento);
 
 		campoFechaNacimiento = new JTextField();
-		GridBagConstraints gbc_campoFechaNacimiento = new GridBagConstraints();
-		gbc_campoFechaNacimiento.gridwidth = 2;
-		gbc_campoFechaNacimiento.insets = new Insets(0, 0, 5, 5);
-		gbc_campoFechaNacimiento.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoFechaNacimiento.gridx = 2;
-		gbc_campoFechaNacimiento.gridy = 5;
-		add(campoFechaNacimiento, gbc_campoFechaNacimiento);
+		campoFechaNacimiento.setBounds(225, 183, 117, 20);
+		add(campoFechaNacimiento);
 		campoFechaNacimiento.setColumns(10);
 
-		JLabel labelGenero = new JLabel("Genero");
-		GridBagConstraints gbc_labelGenero = new GridBagConstraints();
-		gbc_labelGenero.anchor = GridBagConstraints.WEST;
-		gbc_labelGenero.insets = new Insets(0, 0, 5, 5);
-		gbc_labelGenero.gridx = 1;
-		gbc_labelGenero.gridy = 6;
-		add(labelGenero, gbc_labelGenero);
+		JLabel labelTerminos = new JLabel("Condiciones de uso");
+		labelTerminos.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelTerminos.setForeground(new Color(51, 204, 255));
+		labelTerminos.setBounds(75, 212, 141, 14);
+		add(labelTerminos);
 
-		final JRadioButton generoHombre = new JRadioButton("Hombre");
-		GridBagConstraints gbc_generoHombre = new GridBagConstraints();
-		gbc_generoHombre.insets = new Insets(0, 0, 5, 5);
-		gbc_generoHombre.gridx = 2;
-		gbc_generoHombre.gridy = 6;
-		add(generoHombre, gbc_generoHombre);
-
-		final JRadioButton generoMujer = new JRadioButton("Mujer");
-		GridBagConstraints gbc_generoMujer = new GridBagConstraints();
-		gbc_generoMujer.insets = new Insets(0, 0, 5, 5);
-		gbc_generoMujer.gridx = 3;
-		gbc_generoMujer.gridy = 6;
-		add(generoMujer, gbc_generoMujer);
+		final JRadioButton botonAceptar = new JRadioButton("Aceptar");
+		botonAceptar.setBounds(225, 208, 117, 23);
+		add(botonAceptar);
 
 		ButtonGroup grupoGenero = new ButtonGroup();
-		grupoGenero.add(generoHombre);
-		grupoGenero.add(generoMujer);
+		grupoGenero.add(botonAceptar);
 
 		JLabel labelLocalizacion = new JLabel("Localización");
+		labelLocalizacion.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelLocalizacion.setForeground(new Color(51, 204, 255));
+		labelLocalizacion.setBounds(75, 239, 105, 14);
 		labelLocalizacion.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_labelLocalizacion = new GridBagConstraints();
-		gbc_labelLocalizacion.insets = new Insets(0, 0, 5, 5);
-		gbc_labelLocalizacion.anchor = GridBagConstraints.WEST;
-		gbc_labelLocalizacion.gridx = 1;
-		gbc_labelLocalizacion.gridy = 7;
-		add(labelLocalizacion, gbc_labelLocalizacion);
+		add(labelLocalizacion);
 
 		final JComboBox selectorPais = new JComboBox();
+		selectorPais.setBounds(225, 236, 117, 20);
 		selectorPais.setModel(new DefaultComboBoxModel(Paises.values()));
-		GridBagConstraints gbc_selectorPais = new GridBagConstraints();
-		gbc_selectorPais.gridwidth = 2;
-		gbc_selectorPais.insets = new Insets(0, 0, 5, 5);
-		gbc_selectorPais.fill = GridBagConstraints.HORIZONTAL;
-		gbc_selectorPais.gridx = 2;
-		gbc_selectorPais.gridy = 7;
-		add(selectorPais, gbc_selectorPais);
+		add(selectorPais);
 
 		JButton botonRegistro = new Boton("Registrarse");
-
-		GridBagConstraints gbc_botonRegistro = new GridBagConstraints();
-		gbc_botonRegistro.fill = GridBagConstraints.HORIZONTAL;
-		gbc_botonRegistro.gridwidth = 3;
-		gbc_botonRegistro.insets = new Insets(0, 0, 5, 5);
-		gbc_botonRegistro.gridx = 1;
-		gbc_botonRegistro.gridy = 8;
-		add(botonRegistro, gbc_botonRegistro);
+		botonRegistro.setBounds(124, 261, 218, 45);
+		add(botonRegistro);
 
 		JButton botonAtras = new BotonAzul("Atrás");
+		botonAtras.setBounds(471, 369, 111, 45);
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ventana.cambiarAPantalla("login");
 			}
 		});
-		GridBagConstraints gbc_botonAtras = new GridBagConstraints();
-		gbc_botonAtras.anchor = GridBagConstraints.EAST;
-		gbc_botonAtras.gridx = 5;
-		gbc_botonAtras.gridy = 10;
-		add(botonAtras, gbc_botonAtras);
+		add(botonAtras);
+		
+		JLabel imagenFondo = new JLabel("");
+		imagenFondo.setIcon(new ImageIcon("C:\\Users\\Gonza\\eclipse-workspace\\broker\\grafico.jpg"));
+		imagenFondo.setBounds(0, 0, 607, 414);
+		add(imagenFondo);
 
 		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
@@ -210,7 +151,7 @@ public class PantallaRegistro extends JPanel {
 					String[] fechaNaciPartida = fechaEnTexto.split("/");
 					LocalDate fechaNacimiento = LocalDate.of(Integer.parseInt(fechaNaciPartida[2]),
 							Integer.parseInt(fechaNaciPartida[1]), Integer.parseInt(fechaNaciPartida[0]));
-					String genero = (generoHombre.isSelected() ? "Hombre" : "Mujer");
+					String genero = (botonAceptar.isSelected() ? "Hombre" : "Mujer");
 					Paises pais = (Paises) selectorPais.getSelectedItem();
 					System.out.println(genero);
 					System.out.println(pais);

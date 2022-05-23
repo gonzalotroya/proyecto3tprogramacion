@@ -31,11 +31,10 @@ public class Boton extends JButton {
 	}
 
 	private void estiloPorDefecto() {
-		this.setForeground(Color.MAGENTA);
-		this.setBackground(Color.GREEN);
+		this.setForeground(Color.CYAN);
+		this.setBackground(Color.DARK_GRAY);
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 40));
-        this.setBounds(258, 43, 192, 42);
+		this.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 30));
 	}
 
 }
