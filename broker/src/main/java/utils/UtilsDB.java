@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public abstract class UtilsDB {
-	private static final String cadenaConexion="jdbc:mysql://127.0.0.1:3306/bd1dam";
+	private static final String cadenaConexion="jdbc:mysql://127.0.0.1:3306/broker";
 	private static final String usuarioBD="root";
 	private static final String contrasenaBD="calel2022";
 	private static Connection conexion;
@@ -21,7 +21,7 @@ public abstract class UtilsDB {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println("No se pudo conectar, int�ntalo luego.");
+				System.out.println("No se pudo conectar, intentalo luego.");
 				return null;
 			}
 		
