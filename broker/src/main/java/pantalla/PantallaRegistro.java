@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import clases.Operacion;
 import clases.Usuario;
 import elementosvisuales.Boton;
 import elementosvisuales.BotonAzul;
@@ -32,6 +33,8 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
@@ -151,11 +154,23 @@ public class PantallaRegistro extends JPanel {
 					String[] fechaNaciPartida = fechaEnTexto.split("/");
 					LocalDate fechaNacimiento = LocalDate.of(Integer.parseInt(fechaNaciPartida[2]),
 							Integer.parseInt(fechaNaciPartida[1]), Integer.parseInt(fechaNaciPartida[0]));
-					String genero = (botonAceptar.isSelected() ? "Hombre" : "Mujer");
+					String condiciones = null;
+					if(botonAceptar.isSelected()) {
+						condiciones="Aceptar";
+					}else {
+						condiciones="";
+					}
 					Paises pais = (Paises) selectorPais.getSelectedItem();
-					System.out.println(genero);
-					System.out.println(pais);
+					if(condiciones!=null) {
+					//constructor
+						
+						JOptionPane.showMessageDialog(ventana, "Registro con exito","Registro correcto",JOptionPane.PLAIN_MESSAGE);
+						ventana.cambiarAPantalla("login");
+					}else {
+						JOptionPane.showMessageDialog(ventana, "Acepta las condiciones de uso","Error",JOptionPane.ERROR_MESSAGE);
+					}
 
+					
 					
 				} catch (DateTimeException e1) {
 					JOptionPane.showMessageDialog(
@@ -163,6 +178,10 @@ public class PantallaRegistro extends JPanel {
 					JOptionPane.ERROR_MESSAGE);
 					
 					//TODO METER EL ERROR DEL SPLIT DE LA CONTRASEÑA
+				} catch (ArrayIndexOutOfBoundsException e1) {
+					JOptionPane.showMessageDialog(
+					ventana,"Formato de fecha incorrecto debe ser DD/MM/YYYY","Error",
+					JOptionPane.ERROR_MESSAGE);
 				} 
 			}
 		});

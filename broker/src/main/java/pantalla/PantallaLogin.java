@@ -127,7 +127,11 @@ public class PantallaLogin extends JPanel {
 					JOptionPane.ERROR_MESSAGE);
 					
 					//TODO METER EL ERROR DEL SPLIT DE LA CONTRASEÑA
-				} 
+				} catch (ArrayIndexOutOfBoundsException e1) {
+					JOptionPane.showMessageDialog(
+					ventana,"Formato de fecha incorrecto debe ser DD/MM/YYYY","Error",
+					JOptionPane.ERROR_MESSAGE);
+				}  
 			}
 		});
 	}

@@ -14,6 +14,8 @@ public class Ventana extends JFrame{
 		pantallas=new HashMap<String,JPanel>();
 		pantallas.put("login", new PantallaLogin(this));
 		pantallas.put("registro", new PantallaRegistro(this));
+		pantallas.put("mercado",new PantallaMercado(this));
+
 		
 		this.setBounds(1920,800,800,800);
 		this.setLocationRelativeTo(null);
