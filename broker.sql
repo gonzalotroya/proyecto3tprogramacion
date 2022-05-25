@@ -1,4 +1,4 @@
-/*DROP DATABASE IF exists broker;*/
+DROP DATABASE IF exists broker;
 
 CREATE DATABASE broker;
 use broker;
@@ -6,11 +6,13 @@ use broker;
 create table usuario(
 	id int primary key,
 	nombre varchar(200),
+    apellidos VARchar(200),
     email varchar(400),
     contrasena varchar(30),
     fechaNacimiento date,
     numeroAcciones INT,
-    saldo int,
+    saldoInvertido int,
+    saldoLibre int,
     cuentaBanco VARCHAR(30),
     dni VARCHAR(10),
     telefono int
