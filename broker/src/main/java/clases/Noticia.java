@@ -6,8 +6,8 @@ import superclases.EntidadConNombre;
 
 public class Noticia extends EntidadConNombre{
 
-	private LocalDate fecha;
-	private String cuerpo;
+	protected LocalDate fecha;
+	protected String cuerpo;
 	public LocalDate getFecha() {
 		return fecha;
 	}

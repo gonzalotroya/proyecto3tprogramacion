@@ -1,5 +1,7 @@
 package superclases;
 
+import clases.Usuario;
+
 public class EntidadConNombre {
 
 	public String nombre;
@@ -20,6 +22,11 @@ public class EntidadConNombre {
 	@Override
 	public String toString() {
 		return "EntidadConNombre [nombre=" + nombre + "]";
+	}
+
+	public int compareTo(Object o) {
+		Usuario otro=(Usuario)o;
+		return this.nombre.compareTo(otro.nombre);
 	}
 	
 }
