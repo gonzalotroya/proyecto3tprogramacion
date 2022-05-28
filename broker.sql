@@ -4,7 +4,6 @@ CREATE DATABASE broker;
 use broker;
 
 create table usuario(
-	id int primary key,
 	nombre varchar(200),
     apellidos VARchar(200),
     email varchar(400),
@@ -14,24 +13,22 @@ create table usuario(
     saldoInvertido int,
     saldoLibre int,
     cuentaBanco VARCHAR(30),
-    dni VARCHAR(10),
+    dni VARCHAR(10) primary key,
     telefono int
 );
 
 create table empresa(
-id int primary key,
 valor int,
-nombre varchar(100),
+nombre varchar(100) primary key,
 indice VARCHAR(100)
 );
 
 create table etf(
-id int primary key,
-sectores varchar(100)
+sectores varchar(100) primary key
 );
 create table noticias(
-id int primary key,
-noticias varchar(900),
+titular varchar(100) primary key,
+cuerpo varchar(900),
 fecha Date
 );
 
