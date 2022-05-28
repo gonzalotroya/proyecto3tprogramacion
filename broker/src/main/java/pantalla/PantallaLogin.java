@@ -79,6 +79,27 @@ public class PantallaLogin extends JPanel {
 		botonLogin.setBounds(95, 243, 251, 55);
 		botonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					String nombre = campoUsuario.getText();
+					String contraseña = new String(campoContraseña.getPassword());
+			
+
+					ventana.usuarioLogado=new Usuario(nombre, contraseña);
+					ventana.cambiarAPantalla("Mercado");
+					
+					JOptionPane.showMessageDialog(ventana, "Hola"+ventana.usuarioLogado.getNombre(),"Login correcto",JOptionPane.PLAIN_MESSAGE);
+				} catch (DateTimeException |SQLException|ContraseñaIncorrectaException|UsuarioNoExisteException e1) {
+					JOptionPane.showMessageDialog(
+					ventana,e1.getMessage(),"Error",
+					JOptionPane.ERROR_MESSAGE);
+					
+					//TODO METER EL ERROR DEL SPLIT DE LA CONTRASEÑA
+				} catch (ArrayIndexOutOfBoundsException e1) {
+					JOptionPane.showMessageDialog(
+					ventana,"Formato de fecha incorrecto debe ser DD/MM/YYYY","Error",
+					JOptionPane.ERROR_MESSAGE);
+				
+				} 
 			}
 		});
 		botonLogin.setText("Login");

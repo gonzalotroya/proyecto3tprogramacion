@@ -4,18 +4,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import clases.Usuario;
+
 import java.awt.Cursor;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class Ventana extends JFrame{
-	private HashMap<String, JPanel>pantallas;
-	public Ventana() {
-		pantallas=new HashMap<String,JPanel>();
-		pantallas.put("login", new PantallaLogin(this));
-		pantallas.put("registro", new PantallaRegistro(this));
-		pantallas.put("mercado",new PantallaMercado(this));
+	private JPanel pantallaActual;
+	protected Usuario usuarioLogado;
 
+	public Ventana() {
 		
 		this.setBounds(1920,800,800,800);
 		this.setLocationRelativeTo(null);
@@ -23,18 +22,33 @@ public class Ventana extends JFrame{
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Broker");
-		this.setContentPane(this.pantallas.get("login"));
+		this.pantallaActual = new PantallaLogin(this);
+		this.setContentPane(pantallaActual);
 		this.setResizable(false);
 		this.setVisible(true);
 		
 	}
 	public void cambiarAPantalla(String nombrePantalla) {
-		Iterator it=this.pantallas.values().iterator();
-		while(it.hasNext()) {
-			JPanel actual=(JPanel)it.next();
-			actual.setVisible(false);
+		this.pantallaActual.setVisible(false);
+		this.pantallaActual = null;
+
+		switch (nombrePantalla) {
+		case "login":
+			this.pantallaActual=new PantallaLogin(this);
+		break;
+		case "registro":
+			this.pantallaActual=new PantallaRegistro(this);
+
+		break;
+		case "Mercado":
+			this.pantallaActual=new Mercado(this);
+		break;
+		case "":
+			
+		break;
 		}
-		this.pantallas.get(nombrePantalla).setVisible(true);
-		this.setContentPane(this.pantallas.get(nombrePantalla));
+		this.pantallaActual.setVisible(true);
+		this.setContentPane(pantallaActual);
+
 	}
 }

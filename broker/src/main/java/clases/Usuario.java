@@ -7,12 +7,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import exceptions.AñoInvalidoException;
+import exceptions.ContraseñaIncorrectaException;
 import exceptions.ContraseñaVaciaException;
 import exceptions.EmailValidoException;
+import exceptions.UsuarioNoExisteException;
 import superclases.EntidadConNombre;
 import utils.UtilsDB;
 
-public class Usuario extends EntidadConNombre{
+public class Usuario extends EntidadConNombre implements Comparable{
 
 	private ArrayList<Operacion>numeroAccionesCompradas;
 	private int saldoInvertido;
@@ -214,6 +216,40 @@ public class Usuario extends EntidadConNombre{
 	}
 		
 		
+	public Usuario() {
+		super("nombre");
+		// TODO Auto-generated constructor stub
+	}
+	public Usuario(String nombre, String contraseña) throws SQLException, ContraseñaIncorrectaException, UsuarioNoExisteException {
+		super(nombre);
+		Statement smt=UtilsDB.conectarBD();
+        ResultSet cursor=smt.executeQuery("select * from usuario where dni='"+dni+"'");
+
+        if(cursor.next()) {
+        	this.contraseña = cursor.getString("contrasena");
+        	
+        	if(!this.contraseña.equals(contraseña)) {
+        		UtilsDB.desconectarBD();
+        		throw new ContraseñaIncorrectaException("La contraseña no es correcta.");
+        	}
+        	
+        	this.nombre = cursor.getString("nombre");
+        	this.apellidos = cursor.getString("apellidos");
+        	this.dni = cursor.getString("dni");
+        	this.cuentaBanco = cursor.getString("cuentaBanco");
+        	this.numeroAccionesCompradas = (ArrayList<Operacion>) cursor.getArray("numeroAccionesCompradas");
+        	this.saldoInvertido = cursor.getInt("saldoInvertido");
+        	this.saldoLibre = cursor.getInt("saldoLibre");
+        	this.contraseña = cursor.getString("contrasena");
+        	this.email = cursor.getString("email");
+        	this.fechaNacimiento=cursor.getDate("fechaNacimiento").toLocalDate();
+        }else {
+            UtilsDB.desconectarBD();
+            throw new UsuarioNoExisteException("No existe el usuario en la BD.");
+        }
+        UtilsDB.desconectarBD();
+		// TODO Auto-generated constructor stub
+	}
 	public boolean eliminar() {
 		//El borrado lo hacemos con la PK para no equivocarnos y borrar lo que no es.
 		
@@ -264,7 +300,42 @@ public class Usuario extends EntidadConNombre{
 		UtilsDB.desconectarBD();
 		return ret;
 	}
-	
+	public static ArrayList<Usuario> getTodos() {
+		Statement smt = UtilsDB.conectarBD();
+		// Inicializamos un ArrayList para devolver.
+		ArrayList<Usuario> ret = new ArrayList<Usuario>();
+
+		try {
+			ResultSet cursor = smt.executeQuery("select * from usuario");
+			while (cursor.next()) {
+				Usuario actual = new Usuario();
+
+				actual.nombre = cursor.getString("nombre");
+				actual.apellidos = cursor.getString("apellidos");
+				actual.dni = cursor.getString("dni");
+				actual.cuentaBanco = cursor.getString("cuentaBanco");
+				actual.numeroAccionesCompradas = (ArrayList<Operacion>) cursor.getArray("numeroAccionesCompradas");
+				actual.saldoInvertido = cursor.getInt("saldoInvertido");
+				actual.saldoLibre = cursor.getInt("saldoLibre");
+				actual.contraseña = cursor.getString("contrasena");
+				actual.email = cursor.getString("email");
+				actual.fechaNacimiento=cursor.getDate("fechaNacimiento").toLocalDate();
+				
+
+				ret.add(actual);
+			}
+		} catch (SQLException e) {
+			// Si la conuslta falla no hay nada que devolver.
+			e.printStackTrace();
+			return null;
+		}
+		// Si no hay usuarios en la tabla, va a devolver un arraylist vacio.
+		// Si la consulta fue erronea se devuelve un arraylist null, que son cosas
+		// distintas.
+		UtilsDB.desconectarBD();
+		return ret;
+	}
+
 	
 	
 	private boolean contraseñaValida(String pass) {
