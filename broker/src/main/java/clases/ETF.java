@@ -1,6 +1,10 @@
 package clases;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import enums.EnumeracionSectores;
+import utils.UtilsDB;
 
 public class ETF extends Operacion{
 
@@ -14,8 +18,14 @@ public class ETF extends Operacion{
 
 
 
-	public void setSectores(EnumeracionSectores sectores) {
-		this.sectores = sectores;
+	public void setSectores(EnumeracionSectores sectores) throws SQLException {
+Statement smt = UtilsDB.conectarBD();
+		
+		if(smt.executeUpdate("update etf set sectores='"+sectores+"' where sectores='"+this.sectores+"'")>0) {
+			this.sectores = sectores;
+		}
+		
+		UtilsDB.desconectarBD();
 	}
 
 

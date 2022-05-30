@@ -18,8 +18,10 @@ import elementosvisuales.Boton;
 import elementosvisuales.BotonAzul;
 import enums.Paises;
 import exceptions.AñoInvalidoException;
+import exceptions.ContraseñaIncorrectaException;
 import exceptions.ContraseñaVaciaException;
 import exceptions.EmailValidoException;
+import exceptions.UsuarioNoExisteException;
 
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
@@ -44,6 +46,11 @@ public class PantallaRegistro extends JPanel {
 	private JTextField campoUsuario;
 	private JTextField campoFechaNacimiento;
 	private JPasswordField campoContraseña;
+	private JTextField campoDNI;
+	private JTextField campoApellidos;
+	private JTextField campoTelefono;
+	private JTextField campoBanco;
+	private final ButtonGroup grupoCondiciones = new ButtonGroup();
 
 	public PantallaRegistro(Ventana v) {
 		this.ventana = v;
@@ -67,7 +74,7 @@ public class PantallaRegistro extends JPanel {
 		add(campoEmail);
 		campoEmail.setColumns(10);
 
-		JLabel labelUsuario = new JLabel("Usuario");
+		JLabel labelUsuario = new JLabel("Nombre");
 		labelUsuario.setForeground(new Color(51, 204, 255));
 		labelUsuario.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
 		labelUsuario.setBounds(75, 136, 85, 14);
@@ -106,18 +113,11 @@ public class PantallaRegistro extends JPanel {
 		add(labelTerminos);
 
 		final JRadioButton botonAceptar = new JRadioButton("Aceptar");
-		botonAceptar.setBounds(225, 208, 117, 23);
+		grupoCondiciones.add(botonAceptar);
+		botonAceptar.setBounds(225, 209, 117, 23);
 		add(botonAceptar);
 
-		ButtonGroup grupoGenero = new ButtonGroup();
-		grupoGenero.add(botonAceptar);
-
-		JLabel labelLocalizacion = new JLabel("Localización");
-		labelLocalizacion.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-		labelLocalizacion.setForeground(new Color(51, 204, 255));
-		labelLocalizacion.setBounds(75, 239, 105, 14);
-		labelLocalizacion.setHorizontalAlignment(SwingConstants.LEFT);
-		add(labelLocalizacion);
+		
 
 		final JComboBox selectorPais = new JComboBox();
 		selectorPais.setBounds(225, 236, 117, 20);
@@ -138,6 +138,50 @@ public class PantallaRegistro extends JPanel {
 		});
 		add(botonAtras);
 		
+		JLabel labelDNI = new JLabel("DNI");
+		labelDNI.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelDNI.setForeground(new Color(51, 204, 255));
+		labelDNI.setBounds(73, 86, 46, 14);
+		add(labelDNI);
+		
+		campoDNI = new JTextField();
+		campoDNI.setBounds(225, 80, 117, 20);
+		add(campoDNI);
+		campoDNI.setColumns(10);
+		
+		JLabel labelApellidos = new JLabel("Apellidos");
+		labelApellidos.setForeground(new Color(51, 204, 255));
+		labelApellidos.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelApellidos.setBounds(352, 136, 85, 14);
+		add(labelApellidos);
+		
+		campoApellidos = new JTextField();
+		campoApellidos.setBounds(427, 134, 130, 20);
+		add(campoApellidos);
+		campoApellidos.setColumns(10);
+		
+		JLabel labelTelefono = new JLabel("Telefono");
+		labelTelefono.setForeground(new Color(51, 204, 255));
+		labelTelefono.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelTelefono.setBounds(352, 111, 72, 14);
+		add(labelTelefono);
+		
+		campoTelefono = new JTextField();
+		campoTelefono.setBounds(428, 109, 130, 20);
+		add(campoTelefono);
+		campoTelefono.setColumns(10);
+		
+		JLabel labelBanco = new JLabel("IBAN");
+		labelBanco.setForeground(new Color(51, 204, 255));
+		labelBanco.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		labelBanco.setBounds(352, 86, 46, 14);
+		add(labelBanco);
+		
+		campoBanco = new JTextField();
+		campoBanco.setBounds(427, 84, 130, 20);
+		add(campoBanco);
+		campoBanco.setColumns(10);
+		
 		JLabel imagenFondo = new JLabel("");
 		imagenFondo.setIcon(new ImageIcon("C:\\Users\\Gonza\\eclipse-workspace\\broker\\grafico.jpg"));
 		imagenFondo.setBounds(0, 0, 607, 414);
@@ -147,8 +191,15 @@ public class PantallaRegistro extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
+					int saldoInvertido=0;
+					int saldoLibre=0;
+					ArrayList<Operacion> numeroAccionesCompradas =(ArrayList<Operacion>) null;
+					String dni=campoDNI.getText();
 					String email = campoEmail.getText();
 					String nombre = campoUsuario.getText();
+					String apellidos=campoApellidos.getText();
+					String telefono=campoTelefono.getText();
+					String cuentaBanco=campoBanco.getText();
 					String contraseña = new String(campoContraseña.getPassword());
 					String fechaEnTexto = campoFechaNacimiento.getText();
 					String[] fechaNaciPartida = fechaEnTexto.split("/");
@@ -157,15 +208,19 @@ public class PantallaRegistro extends JPanel {
 					String condiciones = null;
 					if(botonAceptar.isSelected()) {
 						condiciones="Aceptar";
-					}else {
-						condiciones="";
 					}
 					Paises pais = (Paises) selectorPais.getSelectedItem();
-					if(condiciones!=null) {
-					//constructor
+					if(condiciones!=null) {			
+						try {
+							new Usuario(nombre,saldoInvertido, saldoLibre,apellidos,cuentaBanco,dni, telefono,email,contraseña,fechaNacimiento);
+							JOptionPane.showMessageDialog(ventana, "Registro con exito","Registro correcto",JOptionPane.PLAIN_MESSAGE);
+							ventana.cambiarAPantalla("login");
+						} catch (EmailValidoException | ContraseñaVaciaException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}	
 						
-						JOptionPane.showMessageDialog(ventana, "Registro con exito","Registro correcto",JOptionPane.PLAIN_MESSAGE);
-						ventana.cambiarAPantalla("login");
+						
 					}else {
 						JOptionPane.showMessageDialog(ventana, "Acepta las condiciones de uso","Error",JOptionPane.ERROR_MESSAGE);
 					}

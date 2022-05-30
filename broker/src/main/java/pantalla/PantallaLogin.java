@@ -90,10 +90,8 @@ public class PantallaLogin extends JPanel {
 					JOptionPane.showMessageDialog(ventana, "Hola"+ventana.usuarioLogado.getNombre(),"Login correcto",JOptionPane.PLAIN_MESSAGE);
 				} catch (DateTimeException |SQLException|ContraseñaIncorrectaException|UsuarioNoExisteException e1) {
 					JOptionPane.showMessageDialog(
-					ventana,e1.getMessage(),"Error",
-					JOptionPane.ERROR_MESSAGE);
+					ventana,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 					
-					//TODO METER EL ERROR DEL SPLIT DE LA CONTRASEÑA
 				} catch (ArrayIndexOutOfBoundsException e1) {
 					JOptionPane.showMessageDialog(
 					ventana,"Formato de fecha incorrecto debe ser DD/MM/YYYY","Error",
@@ -141,8 +139,14 @@ public class PantallaLogin extends JPanel {
 					String nombre = campoUsuario.getText();
 					String contraseña = new String(campoContraseña.getPassword());
 
-					//new Usuario(nombre, contraseña);
-				} catch (DateTimeException e1) {
+					try {
+						ventana.usuarioLogado=new Usuario(nombre, contraseña);
+						ventana.cambiarAPantalla("Mercado");			
+
+					} catch (SQLException | ContraseñaIncorrectaException | UsuarioNoExisteException e1) {
+						JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+					}
+					} catch (DateTimeException e1) {
 					JOptionPane.showMessageDialog(
 					ventana,e1.getMessage(),"Error",
 					JOptionPane.ERROR_MESSAGE);

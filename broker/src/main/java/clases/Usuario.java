@@ -52,7 +52,7 @@ public class Usuario extends EntidadConNombre implements Comparable{
 		//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
 		//solo donde la PK coincida.
 		
-		if(smt.executeUpdate("update usuario set contraseña='"+contraseña+"' where dni='"+this.dni+"'")>0) {
+		if(smt.executeUpdate("update usuario set contrasena='"+contraseña+"' where dni='"+this.dni+"'")>0) {
 			this.contraseña = contraseña;
 
 		}
@@ -194,17 +194,16 @@ public class Usuario extends EntidadConNombre implements Comparable{
 		Statement query=UtilsDB.conectarBD();
 		//Insertar
 		
-		
-		if(query.executeUpdate("insert into usuario values(id,nombre,apellidos,email,contraseña,fechaNacimiento,numeroAcciones,saldoInvertido,saldoLibre,cuentaBanco)"
-				+ "('"+nombre+"','"+apellidos+"','"+dni+"','"+telefono+"','"+email+"','"+
-				contraseña+"',"+numeroAccionesCompradas+",'"+saldoInvertido+"','"+saldoLibre+"','"+cuentaBanco+"')")>0) {
+		if(query.executeUpdate("insert into usuario VALUES ('"+nombre+"','"+apellidos+"','"+email+"','"+
+				contraseña+"','"+fechaNacimiento+"','"+numeroAccionesCompradas+"','"+saldoInvertido+"','"+saldoLibre+"','"+cuentaBanco+"','"+dni+"','"+telefono+"')")>0) {
 			this.nombre = nombre;
+			this.apellidos = apellidos;
 			this.setEmail(email);
 			this.setContraseña(contraseña);
+			this.fechaNacimiento=fechaNacimiento;
 			this.numeroAccionesCompradas = numeroAccionesCompradas;
 			this.saldoInvertido = saldoInvertido;
 			this.saldoLibre = saldoLibre;
-			this.apellidos = apellidos;
 			this.cuentaBanco = cuentaBanco;
 			this.dni = dni;
 			this.telefono = telefono;
@@ -223,7 +222,7 @@ public class Usuario extends EntidadConNombre implements Comparable{
 	public Usuario(String nombre, String contraseña) throws SQLException, ContraseñaIncorrectaException, UsuarioNoExisteException {
 		super(nombre);
 		Statement smt=UtilsDB.conectarBD();
-        ResultSet cursor=smt.executeQuery("select * from usuario where dni='"+dni+"'");
+        ResultSet cursor=smt.executeQuery("select * from usuario where nombre='"+nombre+"'");
 
         if(cursor.next()) {
         	this.contraseña = cursor.getString("contrasena");
@@ -237,12 +236,13 @@ public class Usuario extends EntidadConNombre implements Comparable{
         	this.apellidos = cursor.getString("apellidos");
         	this.dni = cursor.getString("dni");
         	this.cuentaBanco = cursor.getString("cuentaBanco");
-        	this.numeroAccionesCompradas = (ArrayList<Operacion>) cursor.getArray("numeroAccionesCompradas");
+        	//this.numeroAccionesCompradas = (ArrayList<Operacion>) cursor.getArray("numeroAccionesCompradas");
         	this.saldoInvertido = cursor.getInt("saldoInvertido");
         	this.saldoLibre = cursor.getInt("saldoLibre");
         	this.contraseña = cursor.getString("contrasena");
         	this.email = cursor.getString("email");
         	this.fechaNacimiento=cursor.getDate("fechaNacimiento").toLocalDate();
+        	this.telefono=cursor.getString("telefono");
         }else {
             UtilsDB.desconectarBD();
             throw new UsuarioNoExisteException("No existe el usuario en la BD.");
@@ -250,6 +250,41 @@ public class Usuario extends EntidadConNombre implements Comparable{
         UtilsDB.desconectarBD();
 		// TODO Auto-generated constructor stub
 	}
+	public Usuario(String nombre, int saldoInvertido, int saldoLibre, String apellidos, String cuentaBanco,
+			String dni, String telefono, String email, String contraseña, LocalDate fechaNacimiento) throws EmailValidoException, ContraseñaVaciaException, SQLException {
+		super(nombre);
+
+		if(contraseña.isBlank()) {
+			throw new ContraseñaVaciaException("La contraseña no puede estar vacia.");
+		}
+		
+		if(!this.emailValido(email)) {
+			throw new EmailValidoException("El email tiene que tener @.");
+		}
+		
+		Statement query=UtilsDB.conectarBD();
+		//Insertar
+		
+		if(query.executeUpdate("insert into usuario VALUES ('"+nombre+"','"+apellidos+"','"+email+"','"+
+				contraseña+"','"+fechaNacimiento+"','"+saldoInvertido+"','"+saldoLibre+"','"+cuentaBanco+"','"+dni+"','"+telefono+"')")>0) {
+			this.nombre = nombre;
+			this.apellidos = apellidos;
+			this.setEmail(email);
+			this.setContraseña(contraseña);
+			this.fechaNacimiento=fechaNacimiento;
+			this.numeroAccionesCompradas = numeroAccionesCompradas;
+			this.saldoInvertido = saldoInvertido;
+			this.saldoLibre = saldoLibre;
+			this.cuentaBanco = cuentaBanco;
+			this.dni = dni;
+			this.telefono = telefono;
+			
+		}else {
+			throw new SQLException("No se ha podido insertar el usuario.");
+		}
+		UtilsDB.desconectarBD();
+	}
+	
 	public boolean eliminar() {
 		//El borrado lo hacemos con la PK para no equivocarnos y borrar lo que no es.
 		
@@ -314,7 +349,7 @@ public class Usuario extends EntidadConNombre implements Comparable{
 				actual.apellidos = cursor.getString("apellidos");
 				actual.dni = cursor.getString("dni");
 				actual.cuentaBanco = cursor.getString("cuentaBanco");
-				actual.numeroAccionesCompradas = (ArrayList<Operacion>) cursor.getArray("numeroAccionesCompradas");
+				//actual.numeroAccionesCompradas = (ArrayList<Operacion>) cursor.getArray("numeroAccionesCompradas");
 				actual.saldoInvertido = cursor.getInt("saldoInvertido");
 				actual.saldoLibre = cursor.getInt("saldoLibre");
 				actual.contraseña = cursor.getString("contrasena");

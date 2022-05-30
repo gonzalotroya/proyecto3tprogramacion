@@ -15,6 +15,7 @@ public class Accion extends Operacion{
 
 	public void setPorcentaje(float porcentaje) {
 		this.porcentaje = porcentaje;
+		
 	}
 
 
