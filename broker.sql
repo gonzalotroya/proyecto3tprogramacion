@@ -9,7 +9,6 @@ create table usuario(
     email varchar(400),
     contrasena varchar(30),
     fechaNacimiento date,
-    numeroAcciones INT,
     saldoInvertido int,
     saldoLibre int,
     cuentaBanco VARCHAR(30),
@@ -20,9 +19,14 @@ create table usuario(
 create table empresa(
 valor int,
 nombre varchar(100) primary key,
-indice VARCHAR(100)
+mercado VARCHAR(100)
 );
 
+create table opcion(
+calls int,
+corto int,
+interes int
+);
 create table etf(
 sectores varchar(100) primary key
 );
