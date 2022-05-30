@@ -16,6 +16,10 @@ create table usuario(
     telefono int
 );
 
+create table accion(
+porcentaje int primary key,
+eventosNoticias varchar(100)
+);
 create table empresa(
 valor int,
 nombre varchar(100) primary key,
