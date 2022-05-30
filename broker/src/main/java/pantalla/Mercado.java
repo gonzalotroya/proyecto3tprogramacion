@@ -38,14 +38,14 @@ public class Mercado extends JPanel{
 		add(panel, BorderLayout.WEST);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
-		JButton sacaDialogoBoton = new JButton("Dialogo texto");
-		sacaDialogoBoton.addMouseListener(new MouseAdapter() {
+		JButton sacaBotonComprar = new JButton("Comprar");
+		sacaBotonComprar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String mensaje=JOptionPane.showInputDialog(ventana,"Dime algo","Dime algo",JOptionPane.YES_NO_OPTION);
 			}
 		});
-		panel.add(sacaDialogoBoton);
+		panel.add(sacaBotonComprar);
 		
 		JButton btnNewButton_1 = new JButton("New button");
 		panel.add(btnNewButton_1);
@@ -64,7 +64,7 @@ public class Mercado extends JPanel{
 		botonlista2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			ventana.cambiarAPantalla("listav2");
+			ventana.cambiarAPantalla("cartera");
 			}
 		});
 		panel_1.add(botonlista2);

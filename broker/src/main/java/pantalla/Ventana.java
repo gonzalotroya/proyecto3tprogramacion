@@ -16,7 +16,7 @@ public class Ventana extends JFrame{
 
 	public Ventana() {
 		
-		this.setBounds(1920,800,800,800);
+		this.setBounds(800,700,700,700);
 		this.setLocationRelativeTo(null);
 		this.setIconImage(new ImageIcon("./icono.png").getImage());
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
@@ -43,8 +43,8 @@ public class Ventana extends JFrame{
 		case "Mercado":
 			this.pantallaActual=new Mercado(this);
 		break;
-		case "":
-			
+		case "cartera":
+			this.pantallaActual=new PantallaCartera(this);
 		break;
 		}
 		this.pantallaActual.setVisible(true);
