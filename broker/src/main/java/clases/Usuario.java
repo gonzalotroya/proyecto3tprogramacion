@@ -236,13 +236,23 @@ public class Usuario extends EntidadConNombre implements Comparable{
         	this.apellidos = cursor.getString("apellidos");
         	this.dni = cursor.getString("dni");
         	this.cuentaBanco = cursor.getString("cuentaBanco");
-        	//this.numeroAccionesCompradas = (ArrayList<Operacion>) cursor.getArray("numeroAccionesCompradas");
         	this.saldoInvertido = cursor.getInt("saldoInvertido");
         	this.saldoLibre = cursor.getInt("saldoLibre");
         	this.contraseña = cursor.getString("contrasena");
         	this.email = cursor.getString("email");
         	this.fechaNacimiento=cursor.getDate("fechaNacimiento").toLocalDate();
         	this.telefono=cursor.getString("telefono");
+            UtilsDB.desconectarBD();
+            //
+            //Statement smt2=UtilsDB.conectarBD();
+           // smt2.executeQuery("select * from acciones where usuario='"+this.dni+"'");
+            //while() {}
+            //Creas un bucle que te vaya relleneando acciones y metiendolo en el arraylist interno
+           // smt2.executeQuery("select * from acciones where usuario='"+this.dni+"'");
+            //Creas un bucle que te vaya relleneando acciones y metiendolo en el arraylist interno
+           // smt2.executeQuery("select * from etf where usuario='"+this.dni+"'");
+            //Creas un bucle que te vaya relleneando etf y metiendolo en el arraylist interno
+           // UtilsDB.desconectarBD();
         }else {
             UtilsDB.desconectarBD();
             throw new UsuarioNoExisteException("No existe el usuario en la BD.");

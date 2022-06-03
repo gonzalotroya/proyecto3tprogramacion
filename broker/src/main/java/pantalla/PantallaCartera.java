@@ -10,13 +10,18 @@ import javax.swing.JScrollPane;
 
 import clases.Accion;
 import clases.Empresa;
+import clases.Operacion;
 import clases.Usuario;
 import elementosvisuales.ElementoCartera;
+import javax.swing.JButton;
+import javax.swing.JList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PantallaCartera extends JPanel{
 private Ventana ventana;
 	
-	public PantallaCartera(Ventana v) {
+	public PantallaCartera(Ventana v,Operacion o) {
 		this.ventana=v;
 		setLayout(new BorderLayout(0, 0));
 		
@@ -28,7 +33,16 @@ private Ventana ventana;
 		
 		JPanel listaAcciones = new JPanel();
 		scrollPane.setViewportView(listaAcciones);
-		listaAcciones.setLayout(new BoxLayout(listaAcciones, BoxLayout.Y_AXIS));
+		listaAcciones.setLayout(new BorderLayout(0, 0));
+		
+		JButton botonMercado = new JButton("Mercado");
+		botonMercado.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla("Mercado");
+			}
+		});
+		listaAcciones.add(botonMercado, BorderLayout.SOUTH);
 		
 		ArrayList<Empresa>to=Empresa.getTodos();
 		ArrayList<Accion>t=Accion.getTodos();
@@ -36,5 +50,7 @@ private Ventana ventana;
 			listaAcciones.add(new ElementoCartera(ventana,to.get(i)));
 		}
 	}
+
+	
 
 }

@@ -29,6 +29,7 @@ public class Mercado extends JPanel{
 	private Ventana ventana;
 	
 	public Mercado(Ventana v) {
+		ventana=v;
 		setLayout(new BorderLayout(0, 0));
 		
 		
@@ -66,6 +67,8 @@ public class Mercado extends JPanel{
 		verNoticias.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla("noticias");
+
 			}
 		});
 		

@@ -38,13 +38,15 @@ public class Ventana extends JFrame{
 		break;
 		case "registro":
 			this.pantallaActual=new PantallaRegistro(this);
-
 		break;
 		case "Mercado":
 			this.pantallaActual=new Mercado(this);
 		break;
 		case "cartera":
-			this.pantallaActual=new PantallaCartera(this);
+			this.pantallaActual=new PantallaCartera(this, null);
+		break;
+		case "noticias":
+			this.pantallaActual=new PantallaNoticias(this);
 		break;
 		}
 		this.pantallaActual.setVisible(true);

@@ -57,20 +57,20 @@ public class ElementoCartera extends JPanel{
 		gbc_labelNombre.gridx = 1;
 		gbc_labelNombre.gridy = 0;
 		add(labelNombre, gbc_labelNombre);
-		JButton botonBorrar = new JButton("");
-		botonBorrar.addMouseListener(new MouseAdapter() {
+		JButton botonVender = new JButton("Vender");
+		botonVender.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				//empresa.eliminar();
+				EmergenteEditar editor=new EmergenteEditar(ventana, empresa);
+				editor.setVisible(true);
 			}
 		});
-		botonBorrar.setIcon(new ImageIcon(".\\iconos\\borrar.png"));
-		GridBagConstraints gbc_botonBorrar = new GridBagConstraints();
-		gbc_botonBorrar.insets = new Insets(0, 0, 5, 0);
-		gbc_botonBorrar.gridx = 5;
-		gbc_botonBorrar.gridy = 0;
-		add(botonBorrar, gbc_botonBorrar);
+		botonVender.setIcon(new ImageIcon(".\\iconos\\borrar.png"));
+		GridBagConstraints gbc_botonVender = new GridBagConstraints();
+		gbc_botonVender.insets = new Insets(0, 0, 5, 0);
+		gbc_botonVender.gridx = 5;
+		gbc_botonVender.gridy = 0;
+		add(botonVender, gbc_botonVender);
 		
 		JLabel labelEmail = new JLabel(" "+this.empresa.getValor());
 		labelEmail.setFont(new Font("Tahoma", Font.ITALIC, 11));
@@ -87,14 +87,14 @@ public class ElementoCartera extends JPanel{
 		gbc_labelGuion.gridy = 1;
 		add(labelGuion, gbc_labelGuion);
 		
-		JLabel labelFechaNacimiento = new JLabel(this.empresa.getNombre());
-		GridBagConstraints gbc_labelFechaNacimiento = new GridBagConstraints();
-		gbc_labelFechaNacimiento.insets = new Insets(0, 0, 0, 5);
-		gbc_labelFechaNacimiento.gridx = 3;
-		gbc_labelFechaNacimiento.gridy = 1;
-		add(labelFechaNacimiento, gbc_labelFechaNacimiento);
+		JLabel labelMercado = new JLabel(""+this.empresa.getMercado());
+		GridBagConstraints gbc_labelMercado = new GridBagConstraints();
+		gbc_labelMercado.insets = new Insets(0, 0, 0, 5);
+		gbc_labelMercado.gridx = 3;
+		gbc_labelMercado.gridy = 1;
+		add(labelMercado, gbc_labelMercado);
 		
-		JButton botonEditar = new JButton("");
+		JButton botonEditar = new JButton("Comprar");
 		botonEditar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
