@@ -30,11 +30,10 @@ private Ventana ventana;
 		scrollPane.setViewportView(listaAcciones);
 		listaAcciones.setLayout(new BoxLayout(listaAcciones, BoxLayout.Y_AXIS));
 		
-		ArrayList<Usuario>todos=Usuario.getTodos();
 		ArrayList<Empresa>to=Empresa.getTodos();
 		ArrayList<Accion>t=Accion.getTodos();
-		for(int i=0;i<todos.size();i++) {
-			listaAcciones.add(new ElementoCartera(ventana,todos.get(i), to.get(i), t.get(i)));
+		for(int i=0;i<to.size();i++) {
+			listaAcciones.add(new ElementoCartera(ventana,to.get(i)));
 		}
 	}
 

@@ -2,6 +2,7 @@ package dialogoemergente;
 
 import javax.swing.JDialog;
 
+import clases.Empresa;
 import clases.Usuario;
 import exceptions.ContraseñaVaciaException;
 import exceptions.EmailValidoException;
@@ -21,16 +22,15 @@ import java.sql.SQLException;
 
 public class EmergenteEditar extends JDialog{
 	private Ventana madre;
-	private Usuario usuarioEditar;
-	private Usuario usuario;
+	private Empresa empresaEditar;
 	private JPasswordField campopasswd;
 	private JTextField campoEmail;
 	private JTextField campoNombre;
 	
 	
-	public EmergenteEditar(Ventana v,Usuario u) {
+	public EmergenteEditar(Ventana v,Empresa e) {
 		this.madre=v;
-		this.usuarioEditar=u;
+		this.empresaEditar=e;
 		this.setSize(500,400);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
@@ -47,7 +47,7 @@ public class EmergenteEditar extends JDialog{
 		gbc_labelNombre.gridy = 1;
 		getContentPane().add(labelNombre, gbc_labelNombre);
 		
-		campoNombre = new JTextField(this.usuarioEditar.getNombre());		
+		campoNombre = new JTextField(this.empresaEditar.getNombre());		
 		GridBagConstraints gbc_campoNombre = new GridBagConstraints();
 		gbc_campoNombre.insets = new Insets(0, 0, 5, 5);
 		gbc_campoNombre.fill = GridBagConstraints.HORIZONTAL;
@@ -56,15 +56,15 @@ public class EmergenteEditar extends JDialog{
 		getContentPane().add(campoNombre, gbc_campoNombre);
 		campoNombre.setColumns(10);
 		
-		JLabel labelEmail = new JLabel("Email");
-		GridBagConstraints gbc_labelEmail = new GridBagConstraints();
-		gbc_labelEmail.anchor = GridBagConstraints.EAST;
-		gbc_labelEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_labelEmail.gridx = 2;
-		gbc_labelEmail.gridy = 2;
-		getContentPane().add(labelEmail, gbc_labelEmail);
+		JLabel labelValor = new JLabel("Email");
+		GridBagConstraints gbc_labelValor = new GridBagConstraints();
+		gbc_labelValor.anchor = GridBagConstraints.EAST;
+		gbc_labelValor.insets = new Insets(0, 0, 5, 5);
+		gbc_labelValor.gridx = 2;
+		gbc_labelValor.gridy = 2;
+		getContentPane().add(labelValor, gbc_labelValor);
 		
-		campoEmail = new JTextField(this.usuarioEditar.getEmail());
+		campoEmail = new JTextField(" "+this.empresaEditar.getValor());
 		GridBagConstraints gbc_campoEmail = new GridBagConstraints();
 		gbc_campoEmail.insets = new Insets(0, 0, 5, 5);
 		gbc_campoEmail.fill = GridBagConstraints.HORIZONTAL;
@@ -81,7 +81,7 @@ public class EmergenteEditar extends JDialog{
 		gbc_labelContraseña.gridy = 3;
 		getContentPane().add(labelContraseña, gbc_labelContraseña);
 		
-		campopasswd = new JPasswordField(this.usuarioEditar.getContraseña());
+		campopasswd = new JPasswordField(" "+this.empresaEditar.getMercado());
 		GridBagConstraints gbc_campopasswd = new GridBagConstraints();
 		gbc_campopasswd.insets = new Insets(0, 0, 5, 5);
 		gbc_campopasswd.fill = GridBagConstraints.HORIZONTAL;
@@ -95,12 +95,11 @@ public class EmergenteEditar extends JDialog{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String nuevoNombre=campoNombre.getText();
-				String nuevoEmail=campoEmail.getText();
+				String nuevoValor=campoEmail.getText();
 				String nuevoContraseña=new String (campopasswd.getPassword());
 				try {
-					usuarioEditar.setNombre(nuevoNombre);
-					usuarioEditar.setContraseña(nuevoContraseña);
-					usuarioEditar.setEmail(nuevoEmail);
+					empresaEditar.setNombre(nuevoNombre);
+					//empresaEditar.setValor(nuevoValor);
 					dispose();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -128,5 +127,8 @@ public class EmergenteEditar extends JDialog{
 		gbc_botonCancelar.gridy = 8;
 		getContentPane().add(botonCancelar, gbc_botonCancelar);
 	}
+
+
+		// TODO Auto-generated constructor stub
 
 }

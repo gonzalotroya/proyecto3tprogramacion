@@ -8,42 +8,64 @@ import utils.UtilsDB;
 
 public class ETF extends Operacion{
 
-	private EnumeracionSectores sectores;
+	private int etf_id;
+	private int ope_id;
+	private int sec_id;
+
 	
-	
-	
-	 public EnumeracionSectores getSectores() {
-		return sectores;
+
+	public ETF(int tipoOperacion, String nombre, int etf_id, int ope_id, int sec_id) {
+		super(tipoOperacion, nombre);
+		this.etf_id = etf_id;
+		this.ope_id = ope_id;
+		this.sec_id = sec_id;
 	}
 
 
 
-	public void setSectores(EnumeracionSectores sectores) throws SQLException {
-Statement smt = UtilsDB.conectarBD();
-		
-		if(smt.executeUpdate("update etf set sectores='"+sectores+"' where sectores='"+this.sectores+"'")>0) {
-			this.sectores = sectores;
-		}
-		
-		UtilsDB.desconectarBD();
+	public int getEtf_id() {
+		return etf_id;
 	}
 
 
 
-	public ETF(EnumeracionSectores sectores) {
-		super();
-		this.sectores = sectores;
+	public void setEtf_id(int etf_id) {
+		this.etf_id = etf_id;
 	}
 
 
 
-	@Override
-	public String toString() {
-		return "ETF [sectores=" + sectores + "]";
+	public int getOpe_id() {
+		return ope_id;
+	}
+
+
+
+	public void setOpe_id(int ope_id) {
+		this.ope_id = ope_id;
+	}
+
+
+
+	public int getSec_id() {
+		return sec_id;
+	}
+
+
+
+	public void setSec_id(int sec_id) {
+		this.sec_id = sec_id;
 	}
 
 
 
 	public static  void precio() {}
+
+
+
+	@Override
+	public String toString() {
+		return "ETF [etf_id=" + etf_id + ", ope_id=" + ope_id + ", sec_id=" + sec_id + "]";
+	}
 
 }

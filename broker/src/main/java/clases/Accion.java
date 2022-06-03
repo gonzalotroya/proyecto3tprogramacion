@@ -62,12 +62,11 @@ public class Accion extends Operacion{
 		ArrayList<Accion> ret = new ArrayList<Accion>();
 
 		try {
-			ResultSet cursor = smt.executeQuery("select * from accion");
+			ResultSet cursor = smt.executeQuery("select * from acciones");
 			while (cursor.next()) {
 				Accion actual = new Accion();
-
+				
 				actual.porcentaje = cursor.getInt("porcentaje");
-				actual.eventosNoticias = cursor.getString("eventosNoticias");
 				
 
 				ret.add(actual);
