@@ -14,9 +14,9 @@ import exceptions.UsuarioNoExisteException;
 import superclases.EntidadConNombre;
 import utils.UtilsDB;
 
-public class Usuario extends EntidadConNombre implements Comparable{
+public class Usuario extends EntidadConNombre implements Comparable {
 
-	private ArrayList<Operacion>numeroAccionesCompradas;
+	private ArrayList<Operacion> numeroAccionesCompradas;
 	private int saldoInvertido;
 	private int saldoLibre;
 	private String apellidos;
@@ -26,203 +26,233 @@ public class Usuario extends EntidadConNombre implements Comparable{
 	private String email;
 	private String contraseña;
 	private LocalDate fechaNacimiento;
-	
-	
+
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+
 	public void setFechaNacimiento(LocalDate fechaNacimiento) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
-		//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
-		//solo donde la PK coincida.
-		
-		if(smt.executeUpdate("update usuario set fechaNacimiento='"+fechaNacimiento+"' where dni='"+this.dni+"'")>0) {
+		// La consulta se debe de hacer modificando la variable especifica del setter y
+		// haciendolo
+		// solo donde la PK coincida.
+
+		if (smt.executeUpdate(
+				"update usuario set fechaNacimiento='" + fechaNacimiento + "' where dni='" + this.dni + "'") > 0) {
 			this.fechaNacimiento = fechaNacimiento;
 
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
-	
+
 	public String getContraseña() {
 		return contraseña;
 	}
+
 	public void setContraseña(String contraseña) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
-		//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
-		//solo donde la PK coincida.
-		
-		if(smt.executeUpdate("update usuario set contrasena='"+contraseña+"' where dni='"+this.dni+"'")>0) {
+		// La consulta se debe de hacer modificando la variable especifica del setter y
+		// haciendolo
+		// solo donde la PK coincida.
+
+		if (smt.executeUpdate("update usuario set contrasena='" + contraseña + "' where dni='" + this.dni + "'") > 0) {
 			this.contraseña = contraseña;
 
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
+
 	public ArrayList<Operacion> getNumeroAccionesCompradas() {
 		return numeroAccionesCompradas;
 	}
+
 	public void setNumeroAccionesCompradas(ArrayList<Operacion> numeroAccionesCompradas) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
-		//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
-		//solo donde la PK coincida.
-		
-		if(smt.executeUpdate("update usuario set numeroAccionesCompradas='"+numeroAccionesCompradas+"' where dni='"+this.dni+"'")>0) {
+		// La consulta se debe de hacer modificando la variable especifica del setter y
+		// haciendolo
+		// solo donde la PK coincida.
+
+		if (smt.executeUpdate("update usuario set numeroAccionesCompradas='" + numeroAccionesCompradas + "' where dni='"
+				+ this.dni + "'") > 0) {
 			this.numeroAccionesCompradas = numeroAccionesCompradas;
 
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
+
 	public int getSaldoInvertido() {
 		return saldoInvertido;
 	}
+
 	public void setSaldoInvertido(int saldoInvertido) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
-		//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
-		//solo donde la PK coincida.
-		
-		if(smt.executeUpdate("update usuario set saldoInvertido='"+saldoInvertido+"' where dni='"+this.dni+"'")>0) {
+		// La consulta se debe de hacer modificando la variable especifica del setter y
+		// haciendolo
+		// solo donde la PK coincida.
+
+		if (smt.executeUpdate(
+				"update usuario set saldoInvertido='" + saldoInvertido + "' where dni='" + this.dni + "'") > 0) {
 			this.saldoInvertido = saldoInvertido;
 
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
+
 	public int getSaldoLibre() {
 		return saldoLibre;
 	}
+
 	public void setSaldoLibre(int saldoLibre) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
-		//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
-		//solo donde la PK coincida.
-		
-		if(smt.executeUpdate("update usuario set saldoLibre='"+saldoLibre+"' where dni='"+this.dni+"'")>0) {
+		// La consulta se debe de hacer modificando la variable especifica del setter y
+		// haciendolo
+		// solo donde la PK coincida.
+
+		if (smt.executeUpdate("update usuario set saldoLibre='" + saldoLibre + "' where dni='" + this.dni + "'") > 0) {
 			this.saldoLibre = saldoLibre;
 		}
-		
+
 		UtilsDB.desconectarBD();
-		
+
 	}
+
 	public String getApellidos() {
 		return apellidos;
 	}
+
 	public void setApellidos(String apellidos) throws SQLException {
-		//Primero intentamos el update, si no funciona en BD no se hace en java.
-				Statement smt = UtilsDB.conectarBD();
-				//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
-				//solo donde la PK coincida.
-				
-				if(smt.executeUpdate("update usuario set apellidos='"+apellidos+"' where dni='"+this.dni+"'")>0) {
-					this.apellidos = apellidos;
-				}
-				
-				UtilsDB.desconectarBD();
+		// Primero intentamos el update, si no funciona en BD no se hace en java.
+		Statement smt = UtilsDB.conectarBD();
+		// La consulta se debe de hacer modificando la variable especifica del setter y
+		// haciendolo
+		// solo donde la PK coincida.
+
+		if (smt.executeUpdate("update usuario set apellidos='" + apellidos + "' where dni='" + this.dni + "'") > 0) {
+			this.apellidos = apellidos;
+		}
+
+		UtilsDB.desconectarBD();
 	}
+
 	public String getCuentaBanco() {
 		return cuentaBanco;
 	}
+
 	public void setCuentaBanco(String cuentaBanco) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
-		//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
-		//solo donde la PK coincida.
-		
-		if(smt.executeUpdate("update usuario set cuentaBanco='"+cuentaBanco+"' where dni='"+this.dni+"'")>0) {
+		// La consulta se debe de hacer modificando la variable especifica del setter y
+		// haciendolo
+		// solo donde la PK coincida.
+
+		if (smt.executeUpdate(
+				"update usuario set cuentaBanco='" + cuentaBanco + "' where dni='" + this.dni + "'") > 0) {
 			this.cuentaBanco = cuentaBanco;
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
+
 	public String getDni() {
 		return dni;
 	}
+
 	public void setDni(String dni) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
-		//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
-		//solo donde la PK coincida.
-		
-		if(smt.executeUpdate("update usuario set dni='"+dni+"' where dni='"+this.dni+"'")>0) {
+		// La consulta se debe de hacer modificando la variable especifica del setter y
+		// haciendolo
+		// solo donde la PK coincida.
+
+		if (smt.executeUpdate("update usuario set dni='" + dni + "' where dni='" + this.dni + "'") > 0) {
 			this.dni = dni;
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
+
 	public String getTelefono() {
 		return telefono;
 	}
+
 	public void setTelefono(String telefono) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
-		//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
-		//solo donde la PK coincida.
-		
-		if(smt.executeUpdate("update usuario set telefono='"+telefono+"' where dni='"+this.dni+"'")>0) {
+		// La consulta se debe de hacer modificando la variable especifica del setter y
+		// haciendolo
+		// solo donde la PK coincida.
+
+		if (smt.executeUpdate("update usuario set telefono='" + telefono + "' where dni='" + this.dni + "'") > 0) {
 			this.telefono = telefono;
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
-		//La consulta se debe de hacer modificando la variable especifica del setter y haciendolo
-		//solo donde la PK coincida.
-		
-		if(smt.executeUpdate("update usuario set email='"+email+"' where dni='"+this.dni+"'")>0) {
+		// La consulta se debe de hacer modificando la variable especifica del setter y
+		// haciendolo
+		// solo donde la PK coincida.
+
+		if (smt.executeUpdate("update usuario set email='" + email + "' where dni='" + this.dni + "'") > 0) {
 			this.email = email;
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
-	
-	
-	
+
 	public Usuario(String nombre, ArrayList<Operacion> numeroAccionesCompradas, int saldoInvertido, int saldoLibre,
 			String apellidos, String cuentaBanco, String dni, String telefono, String email, String contraseña,
 			LocalDate fechaNacimiento) throws SQLException, ContraseñaVaciaException, EmailValidoException {
 		super(nombre);
-		
-		if(contraseña.isBlank()) {
+
+		if (contraseña.isBlank()) {
 			throw new ContraseñaVaciaException("La contraseña no puede estar vacia.");
 		}
-		
-		if(!this.emailValido(email)) {
+
+		if (!this.emailValido(email)) {
 			throw new EmailValidoException("El email tiene que tener @.");
 		}
-		
-		Statement query=UtilsDB.conectarBD();
-		//Insertar
-		
-		if(query.executeUpdate("insert into usuario VALUES ('"+nombre+"','"+apellidos+"','"+email+"','"+
-				contraseña+"','"+fechaNacimiento+"','"+numeroAccionesCompradas+"','"+saldoInvertido+"','"+saldoLibre+"','"+cuentaBanco+"','"+dni+"','"+telefono+"')")>0) {
+
+		Statement query = UtilsDB.conectarBD();
+		// Insertar
+
+		if (query.executeUpdate("insert into usuario VALUES ('" + nombre + "','" + apellidos + "','" + email + "','"
+				+ contraseña + "','" + fechaNacimiento + "','" + numeroAccionesCompradas + "','" + saldoInvertido
+				+ "','" + saldoLibre + "','" + cuentaBanco + "','" + dni + "','" + telefono + "')") > 0) {
 			this.nombre = nombre;
 			this.apellidos = apellidos;
 			this.setEmail(email);
 			this.setContraseña(contraseña);
-			this.fechaNacimiento=fechaNacimiento;
+			this.fechaNacimiento = fechaNacimiento;
 			this.numeroAccionesCompradas = numeroAccionesCompradas;
 			this.saldoInvertido = saldoInvertido;
 			this.saldoLibre = saldoLibre;
 			this.cuentaBanco = cuentaBanco;
 			this.dni = dni;
 			this.telefono = telefono;
-			
-		}else {
+
+		} else {
 			throw new SQLException("No se ha podido insertar el usuario.");
 		}
 		UtilsDB.desconectarBD();
 	}
-		
-		
+
 	public Usuario() {
 		super("nombre");
 		// TODO Auto-generated constructor stub
 	}
+
 	public Usuario(String nombre, String contraseña) throws SQLException, ContraseñaIncorrectaException, UsuarioNoExisteException {
 		super(nombre);
 		Statement smt=UtilsDB.conectarBD();
-        ResultSet cursor=smt.executeQuery("select * from usuario where nombre='"+nombre+"'");
+        ResultSet cursor=smt.executeQuery("select * from usuario where dni='"+dni+"'");
 
         if(cursor.next()) {
         	this.contraseña = cursor.getString("contrasena");
@@ -244,69 +274,98 @@ public class Usuario extends EntidadConNombre implements Comparable{
         	this.telefono=cursor.getString("telefono");
             UtilsDB.desconectarBD();
             //
-            //Statement smt2=UtilsDB.conectarBD();
-           // smt2.executeQuery("select * from acciones where usuario='"+this.dni+"'");
-            //while() {}
+           Statement smt2=UtilsDB.conectarBD();
+           smt2.executeQuery("select * from acciones where usuario='"+dni+"'");
+            while(numeroAccionesCompradas!= null) {
+          
+            	ArrayList<Operacion>numeroAccionesCompradas =new ArrayList<Operacion>();
+            	for(int i = 0;i<numeroAccionesCompradas.size();i++){
+            		if(numeroAccionesCompradas.get(i).esComprada(getNumeroAccionesCompradas())){
+                         numeroAccionesCompradas.add(numeroAccionesCompradas.get(i));
+                         }
+                         
+                        }
+            	}
+           
+            
+            	/*
+             * 
+             * 
+             * arraylist todas ls acciones(las pilla d bbdd)
+             * arraylist comprados(solo inicializarlo)
+             * 
+             * for(todasLasAcciones.size){
+             * if(todasLasAcciones-get(i).isComprada(getter comprada(bool)){
+             * comprados.add(todasLasAcciones-get(i));
+             * }
+             * 
+             * }
+             * 
+             * 
+             * */
+       }
             //Creas un bucle que te vaya relleneando acciones y metiendolo en el arraylist interno
            // smt2.executeQuery("select * from acciones where usuario='"+this.dni+"'");
             //Creas un bucle que te vaya relleneando acciones y metiendolo en el arraylist interno
            // smt2.executeQuery("select * from etf where usuario='"+this.dni+"'");
             //Creas un bucle que te vaya relleneando etf y metiendolo en el arraylist interno
            // UtilsDB.desconectarBD();
-        }else {
-            UtilsDB.desconectarBD();
-            throw new UsuarioNoExisteException("No existe el usuario en la BD.");
-        }
-        UtilsDB.desconectarBD();
-		// TODO Auto-generated constructor stub
+        else{
+		UtilsDB.desconectarBD();
+		throw new UsuarioNoExisteException("No existe el usuario en la BD.");
 	}
-	public Usuario(String nombre, int saldoInvertido, int saldoLibre, String apellidos, String cuentaBanco,
-			String dni, String telefono, String email, String contraseña, LocalDate fechaNacimiento) throws EmailValidoException, ContraseñaVaciaException, SQLException {
+    UtilsDB.desconectarBD();
+}
+
+	public Usuario(String nombre, int saldoInvertido, int saldoLibre, String apellidos, String cuentaBanco, String dni,
+			String telefono, String email, String contraseña, LocalDate fechaNacimiento)
+			throws EmailValidoException, ContraseñaVaciaException, SQLException {
 		super(nombre);
 
-		if(contraseña.isBlank()) {
+		if (contraseña.isBlank()) {
 			throw new ContraseñaVaciaException("La contraseña no puede estar vacia.");
 		}
-		
-		if(!this.emailValido(email)) {
+
+		if (!this.emailValido(email)) {
 			throw new EmailValidoException("El email tiene que tener @.");
 		}
-		
-		Statement query=UtilsDB.conectarBD();
-		//Insertar
-		
-		if(query.executeUpdate("insert into usuario VALUES ('"+nombre+"','"+apellidos+"','"+email+"','"+
-				contraseña+"','"+fechaNacimiento+"','"+saldoInvertido+"','"+saldoLibre+"','"+cuentaBanco+"','"+dni+"','"+telefono+"')")>0) {
+
+		Statement query = UtilsDB.conectarBD();
+		// Insertar
+
+		if (query.executeUpdate("insert into usuario VALUES ('" + nombre + "','" + apellidos + "','" + email + "','"
+				+ contraseña + "','" + fechaNacimiento + "','" + saldoInvertido + "','" + saldoLibre + "','"
+				+ cuentaBanco + "','" + dni + "','" + telefono + "')") > 0) {
 			this.nombre = nombre;
 			this.apellidos = apellidos;
 			this.setEmail(email);
 			this.setContraseña(contraseña);
-			this.fechaNacimiento=fechaNacimiento;
+			this.fechaNacimiento = fechaNacimiento;
 			this.numeroAccionesCompradas = numeroAccionesCompradas;
 			this.saldoInvertido = saldoInvertido;
 			this.saldoLibre = saldoLibre;
 			this.cuentaBanco = cuentaBanco;
 			this.dni = dni;
 			this.telefono = telefono;
-			
-		}else {
+
+		} else {
 			throw new SQLException("No se ha podido insertar el usuario.");
 		}
 		UtilsDB.desconectarBD();
 	}
-	
+
 	public boolean eliminar() {
-		//El borrado lo hacemos con la PK para no equivocarnos y borrar lo que no es.
-		
+		// El borrado lo hacemos con la PK para no equivocarnos y borrar lo que no es.
+
 		Statement smt = UtilsDB.conectarBD();
 		boolean ret;
 		try {
-			//Primero lo eliminamos de la base de datos.
-			ret = smt.executeUpdate("delete from usuario where dni='"+this.dni+"'")>0;
-			//Luego lo eliminamos de Java.
+			// Primero lo eliminamos de la base de datos.
+			ret = smt.executeUpdate("delete from usuario where dni='" + this.dni + "'") > 0;
+			// Luego lo eliminamos de Java.
 			this.nombre = null;
-			this.email=null;
-			this.contraseña=null;
+			this.email = null;
+			this.contraseña = null;
 			this.numeroAccionesCompradas = null;
 			this.saldoInvertido = (Integer) null;
 			this.saldoLibre = (Integer) null;
@@ -321,21 +380,21 @@ public class Usuario extends EntidadConNombre implements Comparable{
 		UtilsDB.desconectarBD();
 		return ret;
 	}
-	
-	public ArrayList<Noticia> getNoticias(){
+
+	public ArrayList<Noticia> getNoticias() {
 		Statement smt = UtilsDB.conectarBD();
 
 		ArrayList<Noticia> ret = new ArrayList<Noticia>();
-		
+
 		try {
-			ResultSet cursor=smt.executeQuery("select * from empresa where nombre ='"+this.nombre+"'");
-			while(cursor.next()) {
+			ResultSet cursor = smt.executeQuery("select * from empresa where nombre ='" + this.nombre + "'");
+			while (cursor.next()) {
 				Noticia actual = new Noticia(nombre);
-				
+
 				actual.fecha = cursor.getDate("fecha").toLocalDate();
 				actual.cuerpo = cursor.getString("cuerpo");
 				actual.nombre = cursor.getString("nombre");
-				
+
 				ret.add(actual);
 			}
 		} catch (SQLException e) {
@@ -345,6 +404,7 @@ public class Usuario extends EntidadConNombre implements Comparable{
 		UtilsDB.desconectarBD();
 		return ret;
 	}
+
 	public static ArrayList<Usuario> getTodos() {
 		Statement smt = UtilsDB.conectarBD();
 		// Inicializamos un ArrayList para devolver.
@@ -359,13 +419,13 @@ public class Usuario extends EntidadConNombre implements Comparable{
 				actual.apellidos = cursor.getString("apellidos");
 				actual.dni = cursor.getString("dni");
 				actual.cuentaBanco = cursor.getString("cuentaBanco");
-				//actual.numeroAccionesCompradas = (ArrayList<Operacion>) cursor.getArray("numeroAccionesCompradas");
+				// actual.numeroAccionesCompradas = (ArrayList<Operacion>)
+				// cursor.getArray("numeroAccionesCompradas");
 				actual.saldoInvertido = cursor.getInt("saldoInvertido");
 				actual.saldoLibre = cursor.getInt("saldoLibre");
 				actual.contraseña = cursor.getString("contrasena");
 				actual.email = cursor.getString("email");
-				actual.fechaNacimiento=cursor.getDate("fechaNacimiento").toLocalDate();
-				
+				actual.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
 
 				ret.add(actual);
 			}
@@ -381,33 +441,38 @@ public class Usuario extends EntidadConNombre implements Comparable{
 		return ret;
 	}
 
-	
-	
 	private boolean contraseñaValida(String pass) {
 		return !pass.isBlank();
 	}
-	
+
 	private boolean emailValido(String email) {
 		return email.contains("@");
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return "Usuario [numeroAccionesCompradas=" + numeroAccionesCompradas + ", saldoInvertido=" + saldoInvertido
 				+ ", saldoLibre=" + saldoLibre + ", apellidos=" + apellidos + ", cuentaBanco=" + cuentaBanco + ", dni="
 				+ dni + ", telefono=" + telefono + ", email=" + email + "]";
 	}
+
 	@Override
 	public int compareTo(Object o) {
-		Usuario otro=(Usuario)o;
+		Usuario otro = (Usuario) o;
 		return this.nombre.compareTo(otro.nombre);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		Usuario otro=(Usuario)obj;
+		Usuario otro = (Usuario) obj;
 		return this.nombre.equals(otro.nombre);
 	}
-	
+
+	public static boolean esComprada(ArrayList<Operacion> numeroAccionesCompradas) {
+		if (numeroAccionesCompradas != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

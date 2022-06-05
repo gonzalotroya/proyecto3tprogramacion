@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.ArrayList;
+
 public class Operacion {
 	private int tipoOperacion;
 	private String nombre;
@@ -36,5 +38,12 @@ public Operacion() {
 public void comprar() {
  }
  public void vender() {}
+public static boolean esComprada(ArrayList<Operacion> numeroAccionesCompradas) {
+		if (numeroAccionesCompradas != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

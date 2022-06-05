@@ -56,6 +56,8 @@ public class Accion extends Operacion{
 	public static void precio() {}
 	
 	
+	
+	
 	public static ArrayList<Accion> getTodos() {
 		Statement smt = UtilsDB.conectarBD();
 		// Inicializamos un ArrayList para devolver.

@@ -80,6 +80,10 @@ public class PantallaLogin extends JPanel {
 		botonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					//prueba argumentos
+					//String nombre= System.getProperty("usuario");
+					//String contraseña=System.getProperty("contraseña");
+					
 					String nombre = campoUsuario.getText();
 					String contraseña = new String(campoContraseña.getPassword());
 			
