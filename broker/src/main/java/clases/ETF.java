@@ -5,7 +5,11 @@ import java.sql.Statement;
 
 import enums.EnumeracionSectores;
 import utils.UtilsDB;
-
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class ETF extends Operacion{
 
 	private int etf_id;

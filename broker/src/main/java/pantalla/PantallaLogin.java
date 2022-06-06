@@ -87,7 +87,7 @@ public class PantallaLogin extends JPanel {
 					String nombre = campoUsuario.getText();
 					String contraseña = new String(campoContraseña.getPassword());
 			
-
+					
 					ventana.usuarioLogado=new Usuario(nombre, contraseña);
 					ventana.cambiarAPantalla("Mercado");
 					
