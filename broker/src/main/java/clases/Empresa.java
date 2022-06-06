@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import enums.EnumeracionLugares;
 import utils.UtilsDB;
 /**
  * Clase empresa que tiene los datos de las empresas
@@ -94,14 +95,14 @@ Statement smt = UtilsDB.conectarBD();
 	 * Constructor empresa en cual se toman todos los datos de la empresa
 	 * @param nombre
 	 * @param noticia
-	 * @param mercado
+	 * @param usa
 	 * @param valor
 	 */
-	public Empresa(String nombre, ArrayList<Noticia> noticia, Mercado mercado, float valor) {
+	public Empresa(String nombre, ArrayList<Noticia> noticia, Mercado lugarMercado, float valor) {
 		super();
 		this.nombre = nombre;
 		this.noticia = noticia;
-		this.mercado = mercado;
+		this.mercado = lugarMercado;
 		this.valor = valor;
 	}
 	/**
@@ -109,6 +110,13 @@ Statement smt = UtilsDB.conectarBD();
 	 */
 	public Empresa() {
 		// TODO Auto-generated constructor stub
+	}
+	public Empresa(String nombre, ArrayList<Noticia> noticia, EnumeracionLugares usa, float valor) {
+		super();
+		this.nombre = nombre;
+		this.noticia = noticia;
+		this.getMercado();
+		this.valor = valor;
 	}
 	/**
 	 * toString  que devuelve el valor de todas las variables de la clase
