@@ -86,6 +86,7 @@ public class Mercado extends JPanel{
 		
 		JPanel listaEmpresa = new JPanel();
 		scrollPane.setViewportView(listaEmpresa);
+		listaEmpresa.setLayout(new BoxLayout(listaEmpresa, BoxLayout.Y_AXIS));
 		final ArrayList<Empresa>todos= Empresa.getTodos();
 	
 		for(int i=0;i<todos.size();i++) {

@@ -16,7 +16,7 @@ public class Empresa {
 
 	private String nombre;
 	private ArrayList<Noticia>noticia;
-	private Mercado mercado;
+	private String mercado;
 	private float valor;
 	public String getNombre() {
 		return nombre;
@@ -53,7 +53,7 @@ public class Empresa {
 	 * Getter del Mercado  que toma datos de Mercado
 	 * @return
 	 */
-	public Mercado getMercado() {
+	public String getMercado() {
 		return mercado;
 	}
 	/**
@@ -61,7 +61,7 @@ public class Empresa {
 	 * @param mercado
 	 * @throws SQLException
 	 */
-	public void setMercado(Mercado mercado) throws SQLException {
+	public void setMercado(String mercado) throws SQLException {
 Statement smt = UtilsDB.conectarBD();
 		
 		if(smt.executeUpdate("update empresa set mercado='"+mercado+"' where nombre='"+this.nombre+"'")>0) {
@@ -98,7 +98,7 @@ Statement smt = UtilsDB.conectarBD();
 	 * @param usa
 	 * @param valor
 	 */
-	public Empresa(String nombre, ArrayList<Noticia> noticia, Mercado lugarMercado, float valor) {
+	public Empresa(String nombre, ArrayList<Noticia> noticia, String lugarMercado, float valor) {
 		super();
 		this.nombre = nombre;
 		this.noticia = noticia;
@@ -118,6 +118,36 @@ Statement smt = UtilsDB.conectarBD();
 		this.getMercado();
 		this.valor = valor;
 	}
+	public Empresa(float valor, String nombre, String mercado) {
+
+		super();
+		this.nombre = nombre;
+		this.getMercado();
+		this.valor = valor;
+	}
+	private void cargaEmpresa() {
+
+        Statement smt = UtilsDB.conectarBD();
+
+        try {
+            ResultSet cursor = smt.executeQuery("valor, nombre, mercado");
+
+            while (cursor.next()) {
+        		ArrayList<Empresa> listaEmpresa = new ArrayList<Empresa>();
+
+                float valor = cursor.getFloat("valor");
+                String nombre = cursor.getString("nombre");
+                String mercado = cursor.getString("mercado");
+
+                Empresa Alphabet = new Empresa(valor, nombre, mercado);
+                listaEmpresa.add(Alphabet);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        UtilsDB.desconectarBD();
+
+    }
 	/**
 	 * toString  que devuelve el valor de todas las variables de la clase
 	 */
@@ -143,7 +173,7 @@ Statement smt = UtilsDB.conectarBD();
 
 				actual.nombre = cursor.getString("nombre");
 				actual.valor = cursor.getInt("valor");
-				actual.mercado = ((Empresa) cursor).getMercado();
+				actual.mercado = cursor.getString("mercado");
 				
 
 				ret.add(actual);
@@ -159,6 +189,7 @@ Statement smt = UtilsDB.conectarBD();
 		UtilsDB.desconectarBD();
 		return ret;
 	}
+	
 
 	
 	

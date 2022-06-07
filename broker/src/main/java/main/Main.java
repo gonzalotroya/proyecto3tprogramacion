@@ -1,5 +1,6 @@
 package main;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -16,10 +17,13 @@ public class Main {
 	
 		
 		ArrayList<Noticia> subida = new ArrayList<Noticia>();
+		Noticia buena= new Noticia("Buenos resultados",LocalDate.now(),"Es una buena noticia");
+		subida.add(buena);
+		ArrayList<Empresa> listaEmpresa = new ArrayList<Empresa>();
 		Empresa google = new Empresa ("Alphabet",subida, EnumeracionLugares.USA, 2349);
 		
 		
-		subida.addAll((Collection<? extends Noticia>) google);
+		listaEmpresa.add(google);
 		
 		
 	}
