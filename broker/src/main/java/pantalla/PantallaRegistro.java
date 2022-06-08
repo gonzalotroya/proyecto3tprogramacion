@@ -215,10 +215,17 @@ public class PantallaRegistro extends JPanel {
 							new Usuario(nombre,saldoInvertido, saldoLibre,apellidos,cuentaBanco,dni, telefono,email,contraseña,fechaNacimiento);
 							JOptionPane.showMessageDialog(ventana, "Registro con exito","Registro correcto",JOptionPane.PLAIN_MESSAGE);
 							ventana.cambiarAPantalla("login");
-						} catch (EmailValidoException | ContraseñaVaciaException | SQLException e1) {
+						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-						}	
+						}catch (EmailValidoException e1) {
+							JOptionPane.showMessageDialog(ventana, "Email invalido inserta @","Error",JOptionPane.ERROR_MESSAGE);
+
+						
+						}catch (ContraseñaVaciaException e1) {
+						JOptionPane.showMessageDialog(ventana, "Contraseña vacia","Error",JOptionPane.ERROR_MESSAGE);
+
+						}
 						
 						
 					}else {
@@ -240,5 +247,4 @@ public class PantallaRegistro extends JPanel {
 				} 
 			}
 		});
-	}
-}
+}}
