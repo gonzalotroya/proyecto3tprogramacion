@@ -102,7 +102,7 @@ public class EmergenteEditar extends JDialog{
 			}
 		});
 		
-		campoMercado = new JTextField();
+		campoMercado = new JTextField(" "+this.empresaEditar.getMercado());
 		GridBagConstraints gbc_campoMercado = new GridBagConstraints();
 		gbc_campoMercado.insets = new Insets(0, 0, 5, 5);
 		gbc_campoMercado.fill = GridBagConstraints.HORIZONTAL;
