@@ -15,6 +15,23 @@ public class Main {
 		Ventana ventana=new Ventana();
 		ventana.setVisible(true);
 	
+		String argN = ""; // Nombre Usuario
+        String argC = ""; // Contraseña
+
+        for (byte i = 0; i < args.length; i++) {
+            if (args[i].equals("-argN")) {
+            	argN = (args[i + 1]);
+            }
+            if (args[i].equals("-argC")) {
+            	argC = args[i + 1];
+            }
+            if (args[i].equals("-help") || args[i].equals("?")) {
+                System.out.println(
+                        "Argumentos disponibles:\n" + "\t-nU: Nombre de Usuario." + "\n\t-cU: Contraseña usuario.");
+                System.exit(0);
+            }
+        }
+		
 		
 		ArrayList<Noticia> subida = new ArrayList<Noticia>();
 		Noticia buena= new Noticia("Buenos resultados",LocalDate.now(),"Es una buena noticia");

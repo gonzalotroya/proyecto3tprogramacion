@@ -13,8 +13,11 @@ import java.util.Iterator;
 public class Ventana extends JFrame{
 	private JPanel pantallaActual;
 	protected Usuario usuarioLogado;
+	private String argN;
+	private String argC;
 
 	public Ventana() {
+		
 		
 		this.setBounds(800,700,700,700);
 		this.setLocationRelativeTo(null);
@@ -22,7 +25,7 @@ public class Ventana extends JFrame{
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Broker");
-		this.pantallaActual = new PantallaLogin(this);
+		this.pantallaActual = new PantallaLogin(this,argN,argC);
 		this.setContentPane(pantallaActual);
 		this.setResizable(false);
 		this.setVisible(true);
@@ -34,7 +37,7 @@ public class Ventana extends JFrame{
 
 		switch (nombrePantalla) {
 		case "login":
-			this.pantallaActual=new PantallaLogin(this);
+			this.pantallaActual=new PantallaLogin(this,argN,argC);
 		break;
 		case "registro":
 			this.pantallaActual=new PantallaRegistro(this);
@@ -53,4 +56,5 @@ public class Ventana extends JFrame{
 		this.setContentPane(pantallaActual);
 
 	}
+	
 }

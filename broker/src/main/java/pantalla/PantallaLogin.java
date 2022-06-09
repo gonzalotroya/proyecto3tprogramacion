@@ -44,10 +44,10 @@ public class PantallaLogin extends JPanel {
 	private JTextField campoUsuario;
 	private JPasswordField campoContraseña;
 
-	public PantallaLogin(Ventana v) {
+	public PantallaLogin(Ventana v,String argN,String argC) {
 		this.ventana = v;
 		setLayout(null);
-
+		
 		JLabel labelTitulo = new JLabel("Login");
 		labelTitulo.setForeground(new Color(0, 102, 255));
 		labelTitulo.setBounds(255, 0, 92, 45);
@@ -60,7 +60,7 @@ public class PantallaLogin extends JPanel {
 		labelUsuario.setBounds(73, 144, 90, 14);
 		add(labelUsuario);
 
-		campoUsuario = new JTextField();
+		campoUsuario = new JTextField(argN);
 		campoUsuario.setBounds(196, 141, 150, 20);
 		add(campoUsuario);
 		campoUsuario.setColumns(10);
@@ -71,7 +71,7 @@ public class PantallaLogin extends JPanel {
 		labelContraseña.setBounds(73, 169, 78, 14);
 		add(labelContraseña);
 
-		campoContraseña = new JPasswordField();
+		campoContraseña = new JPasswordField(argC);
 		campoContraseña.setBounds(196, 166, 150, 20);
 		add(campoContraseña);
 
@@ -86,7 +86,6 @@ public class PantallaLogin extends JPanel {
 					
 					String nombre = campoUsuario.getText();
 					String contraseña = new String(campoContraseña.getPassword());
-			
 					
 					ventana.usuarioLogado=new Usuario(nombre, contraseña);
 					ventana.cambiarAPantalla("Mercado");

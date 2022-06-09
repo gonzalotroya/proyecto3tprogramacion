@@ -28,21 +28,21 @@ private Ventana ventana;
 		JLabel labelTitulo = new JLabel("Cartera");
 		add(labelTitulo, BorderLayout.NORTH);
 		
+		JButton botonMercado = new JButton("Mercado");
+		botonMercado.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			ventana.cambiarAPantalla("Mercado");
+		}
+	});
+		add(botonMercado, BorderLayout.SOUTH);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel listaAcciones = new JPanel();
 		scrollPane.setViewportView(listaAcciones);
 		listaAcciones.setLayout(new BorderLayout(0, 0));
-		
-		JButton botonMercado = new JButton("Mercado");
-		botonMercado.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla("Mercado");
-			}
-		});
-		listaAcciones.add(botonMercado, BorderLayout.SOUTH);
 		
 		ArrayList<Empresa>to=Empresa.getTodos();
 		ArrayList<Accion>t=Accion.getTodos();
