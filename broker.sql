@@ -31,6 +31,7 @@ create table Sectores(
 sec_id int primary key not null auto_increment,
 nombreSector varchar (200)
 );
+INSERT INTO Sectores VALUES(1,"ENERGIA");
 create table etf(
 etf_id int primary key not null auto_increment,
 Ope_id int not null,
@@ -60,14 +61,15 @@ INSert into empresa VALUES(15.60,'Repsol','Europa');
 INSert into empresa VALUES(38.90,'CRH','Europa');
 
 create table opcion(
-calls int,
-corto int,
-interes int
+calls float,
+corto float,
+interes float
 );
+INSERT INTO opcion VALUES(0.37,1,5);
 
 create table noticias(
 titular varchar(100) primary key,
 cuerpo varchar(900),
 fecha Date
 );
-
+INSERT INTO noticias VALUES('Subida nice','Los son buenos','2022-06-22');
