@@ -12,8 +12,7 @@ import pantalla.Ventana;
 public class Main {
 
 	public static void main(String[] args) {
-		Ventana ventana=new Ventana();
-		ventana.setVisible(true);
+		
 	
 		String argN = ""; // Nombre Usuario
         String argC = ""; // Contraseña
@@ -42,7 +41,8 @@ public class Main {
 		
 		listaEmpresa.add(google);
 		
-		
+		Ventana ventana=new Ventana(argN,argC);
+		ventana.setVisible(true);
 	}
 
 }

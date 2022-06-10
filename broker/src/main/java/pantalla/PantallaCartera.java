@@ -42,7 +42,7 @@ private Ventana ventana;
 		
 		JPanel listaAcciones = new JPanel();
 		scrollPane.setViewportView(listaAcciones);
-		listaAcciones.setLayout(new BorderLayout(0, 0));
+		listaAcciones.setLayout(new BoxLayout(listaAcciones, BoxLayout.Y_AXIS));
 		
 		ArrayList<Empresa>to=Empresa.getTodos();
 		ArrayList<Accion>t=Accion.getTodos();

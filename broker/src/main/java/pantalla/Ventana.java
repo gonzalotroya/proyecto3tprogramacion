@@ -16,7 +16,7 @@ public class Ventana extends JFrame{
 	private String argN;
 	private String argC;
 
-	public Ventana() {
+	public Ventana(String argN,String argC) {
 		
 		
 		this.setBounds(800,700,700,700);

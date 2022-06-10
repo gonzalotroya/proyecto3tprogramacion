@@ -8,9 +8,16 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
+
+import clases.Empresa;
+import clases.Noticia;
+import elementosvisuales.ElementoCartera;
+import elementosvisuales.ElementoNoticia;
+
 import javax.swing.JList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class PantallaNoticias extends JPanel{
 	private Ventana ventana;
@@ -51,8 +58,18 @@ public class PantallaNoticias extends JPanel{
 		});
 		panel.add(botonMercado);
 		
-		JList listaNoticias = new JList();
-		scrollPane.setViewportView(listaNoticias);
+		JScrollPane scrolPaneNot = new JScrollPane();
+		scrollPane.setViewportView(scrolPaneNot);
+		
+		JPanel listaNoticia = new JPanel();
+		scrolPaneNot.setViewportView(listaNoticia);
+		listaNoticia.setLayout(new BoxLayout(listaNoticia, BoxLayout.Y_AXIS));
 	
+		final ArrayList<Noticia>not= Noticia.getTodos();
+		
+		for(int i=0;i<not.size();i++) {
+			listaNoticia.add(new ElementoNoticia(v,not.get(i)));
+		}	
+			
 	}
 }

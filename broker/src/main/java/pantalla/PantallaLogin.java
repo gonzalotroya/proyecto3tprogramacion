@@ -26,9 +26,16 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ButtonGroup;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -44,15 +51,25 @@ public class PantallaLogin extends JPanel {
 	private JTextField campoUsuario;
 	private JPasswordField campoContraseña;
 
-	public PantallaLogin(Ventana v,String argN,String argC) {
+	public PantallaLogin(Ventana v, String argN, String argC) {
 		this.ventana = v;
 		setLayout(null);
-		
+
 		JLabel labelTitulo = new JLabel("Login");
 		labelTitulo.setForeground(new Color(0, 102, 255));
 		labelTitulo.setBounds(255, 0, 92, 45);
 		labelTitulo.setFont(new Font("Liberation Mono", Font.BOLD, 35));
 		add(labelTitulo);
+		
+		JButton botonSonido = new Boton("Sound");
+		botonSonido.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ReproducirSonido("./sonido.wav");
+			}
+		});
+		botonSonido.setBounds(452, 0, 150, 32);
+		add(botonSonido);
 
 		JLabel labelUsuario = new JLabel("Usuario");
 		labelUsuario.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
@@ -80,32 +97,32 @@ public class PantallaLogin extends JPanel {
 		botonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					//prueba argumentos
-					//String nombre= System.getProperty("usuario");
-					//String contraseña=System.getProperty("contraseña");
-					
+					// prueba argumentos
+					// String nombre= System.getProperty("usuario");
+					// String contraseña=System.getProperty("contraseña");
+
 					String nombre = campoUsuario.getText();
 					String contraseña = new String(campoContraseña.getPassword());
-					
-					ventana.usuarioLogado=new Usuario(nombre, contraseña);
+
+					ventana.usuarioLogado = new Usuario(nombre, contraseña);
 					ventana.cambiarAPantalla("Mercado");
-					
-					JOptionPane.showMessageDialog(ventana, "Hola"+ventana.usuarioLogado.getNombre(),"Login correcto",JOptionPane.PLAIN_MESSAGE);
-				} catch (DateTimeException |SQLException|ContraseñaIncorrectaException|UsuarioNoExisteException e1) {
-					JOptionPane.showMessageDialog(
-					ventana,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-					
+
+					JOptionPane.showMessageDialog(ventana, "Hola" + ventana.usuarioLogado.getNombre(), "Login correcto",
+							JOptionPane.PLAIN_MESSAGE);
+				} catch (DateTimeException | SQLException | ContraseñaIncorrectaException
+						| UsuarioNoExisteException e1) {
+					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
 				} catch (ArrayIndexOutOfBoundsException e1) {
-					JOptionPane.showMessageDialog(
-					ventana,"Formato de fecha incorrecto debe ser DD/MM/YYYY","Error",
-					JOptionPane.ERROR_MESSAGE);
-				
-				} 
+					JOptionPane.showMessageDialog(ventana, "Formato de fecha incorrecto debe ser DD/MM/YYYY", "Error",
+							JOptionPane.ERROR_MESSAGE);
+
+				}
 			}
 		});
 		botonLogin.setText("Login");
 		add(botonLogin);
-		
+
 		JButton botonRegistrarse = new Boton("Registrarse");
 		botonRegistrarse.setBounds(95, 348, 251, 55);
 		botonRegistrarse.addMouseListener(new MouseAdapter() {
@@ -119,49 +136,60 @@ public class PantallaLogin extends JPanel {
 			}
 		});
 		add(botonRegistrarse);
-		
-				JButton botonAtras = new BotonAzul("Atrás");
-				botonAtras.setBounds(416, 431, 135, 55);
-				botonAtras.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						ventana.cambiarAPantalla("login");
-					}
-				});
-				add(botonAtras);
-				
-				JLabel imagenFondo = new JLabel("");
-				imagenFondo.setIcon(new ImageIcon("C:\\Users\\Gonza\\eclipse-workspace\\broker\\grafico.jpg"));
-				imagenFondo.setBounds(0, 0, 602, 486);
-				add(imagenFondo);
+
+		JButton botonAtras = new BotonAzul("Atrás");
+		botonAtras.setBounds(416, 431, 135, 55);
+		botonAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla("login");
+			}
+		});
+		add(botonAtras);
+
+		JLabel imagenFondo = new JLabel("");
+		imagenFondo.setIcon(new ImageIcon("C:\\Users\\Gonza\\eclipse-workspace\\broker\\grafico.jpg"));
+		imagenFondo.setBounds(0, 0, 602, 486);
+		add(imagenFondo);
 
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
+					
+					ReproducirSonido("./sonido.wav");
+
 					String nombre = campoUsuario.getText();
 					String contraseña = new String(campoContraseña.getPassword());
 
 					try {
-						ventana.usuarioLogado=new Usuario(nombre, contraseña);
-						ventana.cambiarAPantalla("Mercado");			
+						ventana.usuarioLogado = new Usuario(nombre, contraseña);
+						ventana.cambiarAPantalla("Mercado");
 
 					} catch (SQLException | ContraseñaIncorrectaException | UsuarioNoExisteException e1) {
-						JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					}
-					} catch (DateTimeException e1) {
-					JOptionPane.showMessageDialog(
-					ventana,e1.getMessage(),"Error",
-					JOptionPane.ERROR_MESSAGE);
-					
-					//TODO METER EL ERROR DEL SPLIT DE LA CONTRASEÑA
+				} catch (DateTimeException e1) {
+					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+					// TODO METER EL ERROR DEL SPLIT DE LA CONTRASEÑA
 				} catch (ArrayIndexOutOfBoundsException e1) {
-					JOptionPane.showMessageDialog(
-					ventana,"Formato de fecha incorrecto debe ser DD/MM/YYYY","Error",
-					JOptionPane.ERROR_MESSAGE);
-				}  
+					JOptionPane.showMessageDialog(ventana, "Formato de fecha incorrecto debe ser DD/MM/YYYY", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 	}
+
+	public void ReproducirSonido(String nombreSonido) {
+		try {
+			AudioInputStream audioInputStream = AudioSystem
+					.getAudioInputStream(new File(nombreSonido).getAbsoluteFile());
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.start();
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+			System.out.println("Error al reproducir el sonido.");
+		}
+	}
 }
-	
