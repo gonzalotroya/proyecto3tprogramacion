@@ -191,6 +191,36 @@ Statement smt = UtilsDB.conectarBD();
 	}
 	
 	
-	
+	public static ArrayList<Empresa> getComprados() {
+		Statement smt = UtilsDB.conectarBD();
+		// Inicializamos un ArrayList para devolver.
+		
+		
+		//TO DO GONZALO TIENES QUE HACE UN ARRAY NUEVO DE EMPRESAS COMPRADAS DONDE METAS LAS EMPRESAS QUE COMPRES Y LUEGO AÑADIR LAS A ESA LISTA
+		ArrayList<Empresa> ret = new ArrayList<Empresa>();
+
+		try {
+			ResultSet cursor = smt.executeQuery("select * from empresa");
+			while (cursor.next()) {
+				Empresa actual = new Empresa();
+
+				actual.nombre = cursor.getString("nombre");
+				actual.valor = cursor.getInt("valor");
+				actual.mercado = cursor.getString("mercado");
+				
+
+				ret.add(actual);
+			}
+		} catch (SQLException e) {
+			// Si la conuslta falla no hay nada que devolver.
+			e.printStackTrace();
+			return null;
+		}
+		// Si no hay usuarios en la tabla, va a devolver un arraylist vacio.
+		// Si la consulta fue erronea se devuelve un arraylist null, que son cosas
+		// distintas.
+		UtilsDB.desconectarBD();
+		return ret;
+	}
 	
 }

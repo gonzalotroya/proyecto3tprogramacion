@@ -19,7 +19,7 @@ public class Ventana extends JFrame{
 	public Ventana(String argN,String argC) {
 		
 		
-		this.setBounds(800,700,700,700);
+		this.setSize(630,520);
 		this.setLocationRelativeTo(null);
 		this.setIconImage(new ImageIcon("./icono.png").getImage());
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));

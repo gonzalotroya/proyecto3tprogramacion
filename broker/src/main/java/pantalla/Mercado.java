@@ -59,6 +59,15 @@ public class Mercado extends JPanel{
 		});
 		panel.add(botonUSA);
 		
+		JButton botonActualizar = new JButton("Actualizar");
+		botonActualizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		panel.add(botonActualizar);
+		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.SOUTH);
 		
