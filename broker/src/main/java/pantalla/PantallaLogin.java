@@ -128,7 +128,7 @@ public class PantallaLogin extends JPanel {
 		botonRegistrarse.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla("registro");
+				ventana.cambiarAPantalla("pantallaRegistro");
 			}
 		});
 		botonRegistrarse.addActionListener(new ActionListener() {
@@ -148,7 +148,7 @@ public class PantallaLogin extends JPanel {
 		add(botonAtras);
 
 		JLabel imagenFondo = new JLabel("");
-		imagenFondo.setIcon(new ImageIcon("C:\\Users\\Gonza\\eclipse-workspace\\broker\\grafico.jpg"));
+		imagenFondo.setIcon(new ImageIcon("./grafico.jpg"));
 		imagenFondo.setBounds(0, 0, 602, 486);
 		add(imagenFondo);
 

@@ -14,8 +14,8 @@ public class Accion extends Operacion{
 	/**
 	 * En esta clase se declaran varias variables que almacenan y realizan calculos matematicos donde obtienen un porcentaje y se obtiene 
 	 * un ramdon de un evento
-	 * @param porcentaje
-	 * @param eventosNoticias
+	 * @param porcentaje es la cantidad de acciones que tiene
+	 * @param eventosNoticias es la subida o bajada que hace una noticia
 	 * @author gonzalo
 	 * **/
 	
@@ -25,7 +25,7 @@ public class Accion extends Operacion{
 	
 	/**
 	 * Getter de porcentaje
-	 * @param porcentaje
+	 * @param porcentaje Establece la cantidad de acciones compradas
 	 */
 	public float getPorcentaje() {
 		return porcentaje;
@@ -34,7 +34,7 @@ public class Accion extends Operacion{
 
 	/**
 	 * Setter del porcentaje
-	 * @param porcentaje
+	 * @param porcentaje pone el valor de las acciones
 	 */
 	public void setPorcentaje(float porcentaje) {
 		this.porcentaje = porcentaje;
@@ -43,7 +43,7 @@ public class Accion extends Operacion{
 
 	/**
 	 * Getter de eventosNoticias
-	 * @param eventosNoticias
+	 * @param eventosNoticias toma el valor que ha provocado el evento
 	 */
 
 	public String getEventosNoticias() {
@@ -53,7 +53,7 @@ public class Accion extends Operacion{
 
 	/**
 	 * Setter de la variable eventosNoticias
-	 * @param eventosNoticias
+	 * @param eventosNoticias Establece el valor del evento
 	 */
 	public void setEventosNoticias(String eventosNoticias) {
 		this.eventosNoticias = eventosNoticias;
@@ -62,8 +62,8 @@ public class Accion extends Operacion{
 
 /**
  * Construtor de la clase accion que usa las las variables porcentaje y eventosNoticas ,que sirve para poder usar y rellenar una accion
- * @param porcentaje
- * @param eventosNoticias
+ * @param porcentaje La cantidad de acciones
+ * @param eventosNoticias Establece el valor del evento
  */
 	public Accion(float porcentaje, String eventosNoticias) {
 		super();
@@ -77,18 +77,12 @@ public class Accion extends Operacion{
  */
 	public Accion() {
 		// TODO Auto-generated constructor stub
-	}
-
-
-
-	public static void precio() {}
-	
-	
+	}	
 	
 	/**
 	 * DAO de la clase Accion que conecta con la base de datos y inicia un arrayList de accion que toma mediante un resulset
 	 * de la base de datos el get de pocentaje y lo añade al arrayList, sino se cumple salta un catch que imprime un SQLexception
-	 * @return ret
+	 * @return ret devuelve en un objeto  qye es añadido a un arrayList
 	 */
 	public static ArrayList<Accion> getTodos() {
 		Statement smt = UtilsDB.conectarBD();

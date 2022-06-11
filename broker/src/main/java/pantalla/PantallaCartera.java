@@ -21,7 +21,7 @@ import java.awt.event.MouseEvent;
 public class PantallaCartera extends JPanel{
 private Ventana ventana;
 	
-	public PantallaCartera(Ventana v,Operacion o) {
+	public PantallaCartera(Ventana v) {
 		this.ventana=v;
 		setLayout(new BorderLayout(0, 0));
 		

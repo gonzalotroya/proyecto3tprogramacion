@@ -24,13 +24,16 @@ import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class Mercado extends JPanel{
 	private Ventana ventana;
 	private Empresa empresa;
 	
 	public Mercado(Ventana v) {
-		ventana=v;
+		setBackground(new Color(0, 204, 153));
+		this.ventana=v;
+		this.empresa=empresa;
 		
 		setLayout(new BorderLayout(0, 0));
 		
@@ -42,26 +45,16 @@ public class Mercado extends JPanel{
 		add(labelTitulo, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 204, 153));
 		add(panel, BorderLayout.WEST);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
-		JButton botonEuropa = new JButton("Europa");
-		botonEuropa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		panel.add(botonEuropa);
-		
-		JButton botonUSA = new JButton("USA");
-		botonUSA.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		panel.add(botonUSA);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(0, 204, 153));
+		add(panel_1, BorderLayout.SOUTH);
 		
 		JButton botonActualizar = new JButton("Actualizar");
+		panel_1.add(botonActualizar);
 		botonActualizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -69,17 +62,13 @@ public class Mercado extends JPanel{
 				repaint();
 			}
 		});
-		panel.add(botonActualizar);
-		
-		JPanel panel_1 = new JPanel();
-		add(panel_1, BorderLayout.SOUTH);
 		
 		JButton verNoticias = new JButton("Noticias");
 		panel_1.add(verNoticias);
 		verNoticias.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla("noticias");
+				ventana.cambiarAPantalla("pantallaNoticias");
 
 			}
 		});
@@ -88,7 +77,7 @@ public class Mercado extends JPanel{
 		botonlista2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			ventana.cambiarAPantalla("cartera");
+			ventana.cambiarAPantalla("pantallaCartera");
 			}
 		});
 		panel_1.add(botonlista2);
@@ -97,6 +86,7 @@ public class Mercado extends JPanel{
 		add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel listaEmpresa = new JPanel();
+		listaEmpresa.setBackground(new Color(0, 204, 204));
 		scrollPane.setViewportView(listaEmpresa);
 		listaEmpresa.setLayout(new BoxLayout(listaEmpresa, BoxLayout.Y_AXIS));
 		final ArrayList<Empresa>todos= Empresa.getTodos();

@@ -137,7 +137,7 @@ public class PantallaRegistro extends JPanel {
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla("login");
+				ventana.cambiarAPantalla("pantallaLogin");
 			}
 		});
 		add(botonAtras);

@@ -43,7 +43,7 @@ public class PantallaNoticias extends JPanel{
 		botonCartera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla("cartera");
+				ventana.cambiarAPantalla("pantallaCartera");
 
 			}
 		});

@@ -8,96 +8,122 @@ import java.util.Random;
 
 import enums.EnumeracionLugares;
 import utils.UtilsDB;
+
 /**
  * Clase empresa que tiene los datos de las empresas
+ * 
  * @author gonzalo
  *
  */
 public class Empresa {
 
+	/**
+	 * @param nombre es el nombre de la empresa
+	 * @param ArrayList<Noticia> noticia donde se almacenan las noticias
+	 * @param mercado El lugar donde esta la empresa
+	 * @param valor el precio al que cotiza
+	 */
 	private String nombre;
-	private ArrayList<Noticia>noticia;
+	private ArrayList<Noticia> noticia;
 	private String mercado;
 	private float valor;
+
 	public String getNombre() {
 		return nombre;
 	}
-/**
- * Setter de la variable nombre que toma sus datos y los conecta y actualiza a la base de datos, si falla salta una excepcion
- * @param nombre
- * @throws SQLException
- */
+
+	/**
+	 * Setter de la variable nombre que toma sus datos y los conecta y actualiza a
+	 * la base de datos, si falla salta una excepcion
+	 * 
+	 * @param nombre  nombre de la empresa
+	 * @throws SQLException da el error sql sea el que sea
+	 */
 	public void setNombre(String nombre) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
-		
-		if(smt.executeUpdate("update empresa set nombre='"+nombre+"' where nombre='"+this.nombre+"'")>0) {
+
+		if (smt.executeUpdate("update empresa set nombre='" + nombre + "' where nombre='" + this.nombre + "'") > 0) {
 			this.nombre = nombre;
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
+
 	/**
 	 * Getter del arraylist Noticia
-	 * @return
+	 * 
+	 * @return noticia  devulve una noticia
 	 */
 	public ArrayList<Noticia> getNoticia() {
 		return noticia;
 	}
+
 	/**
 	 * Setter del arrayList noticia
-	 * @param noticia
+	 * 
+	 * @param noticia establece una notcia en el array
 	 */
 	public void setNoticia(ArrayList<Noticia> noticia) {
 		this.noticia = noticia;
 	}
+
 	/**
-	 * Getter del Mercado  que toma datos de Mercado
-	 * @return
+	 * Getter del Mercado que toma datos de Mercado
+	 * 
+	 * @return mercado devuelve el nombre del lugar donde esta la empresa
 	 */
 	public String getMercado() {
 		return mercado;
 	}
+
 	/**
 	 * Setter de Mercado que conecta con la base de datos
-	 * @param mercado
-	 * @throws SQLException
+	 * 
+	 * @param mercado es el nombre del lugar 
+	 * @throws SQLException da el error sql sea el que sea
 	 */
 	public void setMercado(String mercado) throws SQLException {
-Statement smt = UtilsDB.conectarBD();
-		
-		if(smt.executeUpdate("update empresa set mercado='"+mercado+"' where nombre='"+this.nombre+"'")>0) {
+		Statement smt = UtilsDB.conectarBD();
+
+		if (smt.executeUpdate("update empresa set mercado='" + mercado + "' where nombre='" + this.nombre + "'") > 0) {
 			this.mercado = mercado;
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
+
 	/**
 	 * Getter de valor
-	 * @return
+	 * 
+	 * @return valor devuelve el precio
 	 */
 	public float getValor() {
 		return valor;
 	}
+
 	/**
 	 * Setter de valor
-	 * @param valor
-	 * @throws SQLException
+	 * 
+	 * @param valor Es el precio
+	 * @throws SQLException da el error sql sea el que sea
 	 */
 	public void setValor(float valor) throws SQLException {
-Statement smt = UtilsDB.conectarBD();
-		
-		if(smt.executeUpdate("update empresa set valor='"+valor+"' where nombre='"+this.nombre+"'")>0) {
+		Statement smt = UtilsDB.conectarBD();
+
+		if (smt.executeUpdate("update empresa set valor='" + valor + "' where nombre='" + this.nombre + "'") > 0) {
 			this.valor = valor;
 		}
-		
+
 		UtilsDB.desconectarBD();
 	}
+
 	/**
 	 * Constructor empresa en cual se toman todos los datos de la empresa
-	 * @param nombre
-	 * @param noticia
-	 * @param usa
-	 * @param valor
+	 * 
+	 * @param nombre es el nombre de la empresa
+	 * @param noticia el array de todas las noticias
+	 * @param usa lugar del mercado
+	 * @param valor precio
 	 */
 	public Empresa(String nombre, ArrayList<Noticia> noticia, String lugarMercado, float valor) {
 		super();
@@ -106,12 +132,21 @@ Statement smt = UtilsDB.conectarBD();
 		this.mercado = lugarMercado;
 		this.valor = valor;
 	}
+
 	/**
 	 * Constructor vacio de empresa, para insertar datos vacios
 	 */
 	public Empresa() {
 		// TODO Auto-generated constructor stub
 	}
+
+	/**
+	 * Constructor de empresa en el que se toman todos los datos de de la empresa
+	 * @param nombre es el nombre de la empres
+	 * @param noticia ArrayList de las noticias
+	 * @param usa lugar del mercado
+	 * @param valor precio de la empresa
+	 */
 	public Empresa(String nombre, ArrayList<Noticia> noticia, EnumeracionLugares usa, float valor) {
 		super();
 		this.nombre = nombre;
@@ -119,100 +154,110 @@ Statement smt = UtilsDB.conectarBD();
 		this.getMercado();
 		this.valor = valor;
 	}
-	/*
-	public Empresa(float valor, String nombre, String mercado) {
 
-		super();
-		
-		this.nombre = nombre;
-		this.getMercado();
-		this.valor = valor;
-	}
-	*/
+	/*
+	 * public Empresa(float valor, String nombre, String mercado) {
+	 * 
+	 * super();
+	 * 
+	 * this.nombre = nombre; this.getMercado(); this.valor = valor; }
+	 */
+	/**
+	 * Constructor que no toma los datos de la noticias para insertarlas
+	 * @param valor precio 
+	 * @param nombre nombre de la empresa
+	 * @param mercado lugar donde esta la empresa
+	 * @throws SQLException da el error sql sea el que sea
+	 */
 	public Empresa(float valor, String nombre, String mercado) throws SQLException {
 		super();
 		Statement query = UtilsDB.conectarBD();
 		// Insertar
 
-		if (query.executeUpdate("insert into empresaCompradas VALUES ('" + valor + "','" + nombre + "','" + mercado + "')") > 0) {
+		if (query.executeUpdate(
+				"insert into empresaCompradas VALUES ('" + valor + "','" + nombre + "','" + mercado + "')") > 0) {
 			this.valor = valor;
 			this.nombre = nombre;
-			this.mercado=mercado;
-			
+			this.mercado = mercado;
 
 		} else {
 			throw new SQLException("No se ha podido insertar el usuario.");
 		}
 		UtilsDB.desconectarBD();
-		
+
 	}
-	
-	
-	
+/**
+ * funcion que selecciona los datos de la empresa de base de datos
+ */
 	private void cargaEmpresa() {
 
-        Statement smt = UtilsDB.conectarBD();
+		Statement smt = UtilsDB.conectarBD();
 
-        try {
-            ResultSet cursor = smt.executeQuery("valor, nombre, mercado");
+		try {
+			ResultSet cursor = smt.executeQuery("valor, nombre, mercado");
 
-            while (cursor.next()) {
-        		ArrayList<Empresa> listaEmpresa = new ArrayList<Empresa>();
+			while (cursor.next()) {
+				ArrayList<Empresa> listaEmpresa = new ArrayList<Empresa>();
 
-                float valor = cursor.getFloat("valor");
-                String nombre = cursor.getString("nombre");
-                String mercado = cursor.getString("mercado");
+				float valor = cursor.getFloat("valor");
+				String nombre = cursor.getString("nombre");
+				String mercado = cursor.getString("mercado");
 
-                Empresa Alphabet = new Empresa(valor, nombre, mercado);
-                listaEmpresa.add(Alphabet);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        UtilsDB.desconectarBD();
+				Empresa Alphabet = new Empresa(valor, nombre, mercado);
+				listaEmpresa.add(Alphabet);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		UtilsDB.desconectarBD();
 
-    }
+	}
+
+	/**
+	 * funcion que inserta en base de datos si una empresa sea comprado
+	 * @param ret es el arrayList donde se almacena la empresa
+	 */
 	public void compraEmpresa(ArrayList<Empresa> ret) {
 
-        Statement smt = UtilsDB.conectarBD();
+		Statement smt = UtilsDB.conectarBD();
 
-        try {
-    
-        	ResultSet cursor = smt.executeQuery("insert into empresaCompradas VALUES ('" + valor + "','" + nombre + "','" + mercado + "')");
+		try {
 
+			ResultSet cursor = smt.executeQuery(
+					"insert into empresaCompradas VALUES ('" + valor + "','" + nombre + "','" + mercado + "')");
 
-            while (cursor.next()) {
-        		ArrayList<Empresa> listaEmpresa = new ArrayList<Empresa>();
+			while (cursor.next()) {
+				ArrayList<Empresa> listaEmpresa = new ArrayList<Empresa>();
 
-                float valor = cursor.getFloat("valor");
-                String nombre = cursor.getString("nombre");
-                String mercado = cursor.getString("mercado");
+				float valor = cursor.getFloat("valor");
+				String nombre = cursor.getString("nombre");
+				String mercado = cursor.getString("mercado");
 
-                Empresa emp = new Empresa(valor, nombre, mercado);
-                listaEmpresa.add(emp);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        UtilsDB.desconectarBD();
+				Empresa emp = new Empresa(valor, nombre, mercado);
+				listaEmpresa.add(emp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		UtilsDB.desconectarBD();
 
-    }
-	
+	}
 
-	
-	
 	/**
-	 * toString  que devuelve el valor de todas las variables de la clase
+	 * toString que devuelve el valor de todas las variables de la clase
 	 */
 	@Override
 	public String toString() {
 		return "Empresa [nombre=" + nombre + ", noticia=" + noticia + ", mercado=" + mercado + ", valor=" + valor + "]";
 	}
-	
+
 	/**
-	 * DAO de la clase Empres que conecta con la base de datos y inicia un arrayList de accion que toma mediante un resulset
-	 * de la base de datos el get de nombre,valor,mercado y lo añade al arrayList, sino se cumple salta un catch que imprime un SQLexception
-	 * @return ret
+	 * DAO de la clase Empres que conecta con la base de datos y inicia un arrayList
+	 * de accion que toma mediante un resulset de la base de datos el get de
+	 * nombre,valor,mercado y lo añade al arrayList, sino se cumple salta un catch
+	 * que imprime un SQLexception
+	 * 
+	 * @return ret el arrayList donde se almacena la empresa
 	 */
 	public static ArrayList<Empresa> getTodos() {
 		Statement smt = UtilsDB.conectarBD();
@@ -227,7 +272,6 @@ Statement smt = UtilsDB.conectarBD();
 				actual.nombre = cursor.getString("nombre");
 				actual.valor = cursor.getInt("valor");
 				actual.mercado = cursor.getString("mercado");
-				
 
 				ret.add(actual);
 			}
@@ -242,13 +286,14 @@ Statement smt = UtilsDB.conectarBD();
 		UtilsDB.desconectarBD();
 		return ret;
 	}
-	
-	
+
+	/**
+	 * Funcion que toma de base de datos todas las empresas que han sido compradas
+	 * @return null si esta mal y salta el catch para que no modifique nada
+	 */
 	public static ArrayList<Empresa> getComprados() {
 		Statement smt = UtilsDB.conectarBD();
-		
-		
-		//TO DO GONZALO TIENES QUE HACE UN ARRAY NUEVO DE EMPRESAS COMPRADAS DONDE METAS LAS EMPRESAS QUE COMPRES Y LUEGO AÑADIR LAS A ESA LISTA
+
 		ArrayList<Empresa> retCompradas = new ArrayList<Empresa>();
 
 		try {
@@ -259,7 +304,6 @@ Statement smt = UtilsDB.conectarBD();
 				actual.nombre = cursor.getString("nombre");
 				actual.valor = cursor.getInt("valor");
 				actual.mercado = cursor.getString("mercado");
-				
 
 				retCompradas.add(actual);
 			}
@@ -274,17 +318,21 @@ Statement smt = UtilsDB.conectarBD();
 		UtilsDB.desconectarBD();
 		return retCompradas;
 	}
-	
-	public  boolean actualizar() {
+
+	/**
+	 * Funcion que actualiza los precios de las empresas 
+	 * @return true o false si la actualizacion ha sido exitosa o no
+	 */
+	public boolean actualizar() {
 		Statement smt = UtilsDB.conectarBD();
 		boolean ret;
 		try {
 			ret = smt.executeUpdate("update valor from empresa where nombre='" + this.nombre + "'") > 0;
-			Random r=new Random();
-			float min=0;
-			float max=3;
-			for(float i=min;i<=max;i++) {
-			this.valor=(float) (valor+ (Math.random()*(max-min))+min);
+			Random r = new Random();
+			float min = 0;
+			float max = 3;
+			for (float i = min; i <= max; i++) {
+				this.valor = (float) (valor + (Math.random() * (max - min)) + min);
 			}
 			this.getNombre();
 			this.getMercado();
@@ -296,6 +344,4 @@ Statement smt = UtilsDB.conectarBD();
 		return ret;
 	}
 
-	
-	
 }
