@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Random;
 
 import enums.EnumeracionLugares;
 import utils.UtilsDB;
@@ -118,13 +119,36 @@ Statement smt = UtilsDB.conectarBD();
 		this.getMercado();
 		this.valor = valor;
 	}
+	/*
 	public Empresa(float valor, String nombre, String mercado) {
 
 		super();
+		
 		this.nombre = nombre;
 		this.getMercado();
 		this.valor = valor;
 	}
+	*/
+	public Empresa(float valor, String nombre, String mercado) throws SQLException {
+		super();
+		Statement query = UtilsDB.conectarBD();
+		// Insertar
+
+		if (query.executeUpdate("insert into empresaCompradas VALUES ('" + valor + "','" + nombre + "','" + mercado + "')") > 0) {
+			this.valor = valor;
+			this.nombre = nombre;
+			this.mercado=mercado;
+			
+
+		} else {
+			throw new SQLException("No se ha podido insertar el usuario.");
+		}
+		UtilsDB.desconectarBD();
+		
+	}
+	
+	
+	
 	private void cargaEmpresa() {
 
         Statement smt = UtilsDB.conectarBD();
@@ -148,6 +172,35 @@ Statement smt = UtilsDB.conectarBD();
         UtilsDB.desconectarBD();
 
     }
+	public void compraEmpresa(ArrayList<Empresa> ret) {
+
+        Statement smt = UtilsDB.conectarBD();
+
+        try {
+    
+        	ResultSet cursor = smt.executeQuery("insert into empresaCompradas VALUES ('" + valor + "','" + nombre + "','" + mercado + "')");
+
+
+            while (cursor.next()) {
+        		ArrayList<Empresa> listaEmpresa = new ArrayList<Empresa>();
+
+                float valor = cursor.getFloat("valor");
+                String nombre = cursor.getString("nombre");
+                String mercado = cursor.getString("mercado");
+
+                Empresa emp = new Empresa(valor, nombre, mercado);
+                listaEmpresa.add(emp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        UtilsDB.desconectarBD();
+
+    }
+	
+
+	
+	
 	/**
 	 * toString  que devuelve el valor de todas las variables de la clase
 	 */
@@ -193,14 +246,13 @@ Statement smt = UtilsDB.conectarBD();
 	
 	public static ArrayList<Empresa> getComprados() {
 		Statement smt = UtilsDB.conectarBD();
-		// Inicializamos un ArrayList para devolver.
 		
 		
 		//TO DO GONZALO TIENES QUE HACE UN ARRAY NUEVO DE EMPRESAS COMPRADAS DONDE METAS LAS EMPRESAS QUE COMPRES Y LUEGO AÑADIR LAS A ESA LISTA
-		ArrayList<Empresa> ret = new ArrayList<Empresa>();
+		ArrayList<Empresa> retCompradas = new ArrayList<Empresa>();
 
 		try {
-			ResultSet cursor = smt.executeQuery("select * from empresa");
+			ResultSet cursor = smt.executeQuery("select * from empresaComprada");
 			while (cursor.next()) {
 				Empresa actual = new Empresa();
 
@@ -209,7 +261,7 @@ Statement smt = UtilsDB.conectarBD();
 				actual.mercado = cursor.getString("mercado");
 				
 
-				ret.add(actual);
+				retCompradas.add(actual);
 			}
 		} catch (SQLException e) {
 			// Si la conuslta falla no hay nada que devolver.
@@ -220,7 +272,30 @@ Statement smt = UtilsDB.conectarBD();
 		// Si la consulta fue erronea se devuelve un arraylist null, que son cosas
 		// distintas.
 		UtilsDB.desconectarBD();
+		return retCompradas;
+	}
+	
+	public  boolean actualizar() {
+		Statement smt = UtilsDB.conectarBD();
+		boolean ret;
+		try {
+			ret = smt.executeUpdate("update valor from empresa where nombre='" + this.nombre + "'") > 0;
+			Random r=new Random();
+			float min=0;
+			float max=3;
+			for(float i=min;i<=max;i++) {
+			this.valor=(float) (valor+ (Math.random()*(max-min))+min);
+			}
+			this.getNombre();
+			this.getMercado();
+		} catch (SQLException e) {
+			UtilsDB.desconectarBD();
+			return false;
+		}
+		UtilsDB.desconectarBD();
 		return ret;
 	}
+
+	
 	
 }

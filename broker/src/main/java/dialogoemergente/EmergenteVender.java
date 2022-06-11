@@ -3,13 +3,10 @@ package dialogoemergente;
 import javax.swing.JDialog;
 
 import clases.Empresa;
-import clases.Noticia;
 import clases.Usuario;
 import exceptions.ContraseñaVaciaException;
 import exceptions.EmailValidoException;
 import pantalla.Ventana;
-import utils.UtilsDB;
-
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,12 +18,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
-public class EmergenteEditar extends JDialog{
+public class EmergenteVender extends JDialog{
 	private Ventana madre;
 	private Empresa empresaEditar;
 	private Usuario usuario;
@@ -36,10 +30,9 @@ public class EmergenteEditar extends JDialog{
 	private JTextField campoDinero;
 	
 	
-	public EmergenteEditar(Ventana v,Empresa e) {
+	public EmergenteVender(Ventana v,Empresa e) {
 		this.madre=v;
 		this.empresaEditar=e;
-		//this.usuario=u;
 		this.setSize(500,400);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{91, 0, 0, 0, 0, 0, 0};
@@ -90,7 +83,7 @@ public class EmergenteEditar extends JDialog{
 		gbc_labelDinero.gridy = 3;
 		getContentPane().add(labelDinero, gbc_labelDinero);
 		
-		campoDinero = new JTextField();
+		campoDinero = new JTextField(this.usuario.getSaldoInvertido());
 		GridBagConstraints gbc_campoDinero = new GridBagConstraints();
 		gbc_campoDinero.insets = new Insets(0, 0, 5, 5);
 		gbc_campoDinero.fill = GridBagConstraints.HORIZONTAL;
@@ -108,25 +101,15 @@ public class EmergenteEditar extends JDialog{
 		getContentPane().add(labelContraseña, gbc_labelContraseña);
 		
 		JButton botonAceptar = new JButton("Aceptar");
-		final EmergenteEditar thisRef=this;
+		final EmergenteVender thisRef=this;
 		botonAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String nuevoNombre=campoNombre.getText();
-				
 				try {
-							
-					ArrayList<Empresa> ret = new ArrayList<Empresa>();
-					Empresa actual = new Empresa();
-
-
-					actual.setValor(Float.parseFloat(campoValor.getText()));
-					actual.setNombre(nuevoNombre);
-					actual.getMercado();
-					
-					ret.add(actual);
-					
-					
+					float nuevoValor=Float.parseFloat(campoValor.getText());
+					empresaEditar.setNombre(nuevoNombre);
+					empresaEditar.setValor(nuevoValor);
 					dispose();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import clases.Empresa;
 import clases.Usuario;
 
 import java.awt.Cursor;
@@ -13,6 +14,7 @@ import java.util.Iterator;
 public class Ventana extends JFrame{
 	private JPanel pantallaActual;
 	protected Usuario usuarioLogado;
+	private Empresa empresa;
 	private String argN;
 	private String argC;
 
@@ -34,6 +36,7 @@ public class Ventana extends JFrame{
 	public void cambiarAPantalla(String nombrePantalla) {
 		this.pantallaActual.setVisible(false);
 		this.pantallaActual = null;
+		
 
 		switch (nombrePantalla) {
 		case "login":

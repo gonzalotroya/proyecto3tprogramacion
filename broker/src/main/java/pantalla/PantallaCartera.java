@@ -44,7 +44,7 @@ private Ventana ventana;
 		scrollPane.setViewportView(listaAcciones);
 		listaAcciones.setLayout(new BoxLayout(listaAcciones, BoxLayout.Y_AXIS));
 		
-		ArrayList<Empresa>to=Empresa.getTodos();
+		ArrayList<Empresa>to=Empresa.getComprados();
 		ArrayList<Accion>t=Accion.getTodos();
 		for(int i=0;i<to.size();i++) {
 			listaAcciones.add(new ElementoCartera(ventana,to.get(i)));

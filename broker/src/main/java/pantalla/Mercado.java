@@ -27,9 +27,11 @@ import java.awt.event.MouseEvent;
 
 public class Mercado extends JPanel{
 	private Ventana ventana;
+	private Empresa empresa;
 	
 	public Mercado(Ventana v) {
 		ventana=v;
+		
 		setLayout(new BorderLayout(0, 0));
 		
 		
@@ -63,7 +65,8 @@ public class Mercado extends JPanel{
 		botonActualizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				empresa.actualizar();
+				repaint();
 			}
 		});
 		panel.add(botonActualizar);
@@ -99,7 +102,7 @@ public class Mercado extends JPanel{
 		final ArrayList<Empresa>todos= Empresa.getTodos();
 	
 		for(int i=0;i<todos.size();i++) {
-			listaEmpresa.add(new ElementoCartera(v,todos.get(i) ));
+			listaEmpresa.add(new ElementoCartera(v,todos.get(i)));
 		}	
 			
 	

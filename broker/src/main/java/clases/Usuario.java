@@ -30,6 +30,8 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	private String email;
 	private String contraseña;
 	private LocalDate fechaNacimiento;
+	
+	private Empresa valor;
 
 	/**
 	 * Getter fechaNacimiento
@@ -158,7 +160,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 		// haciendolo
 		// solo donde la PK coincida.
 
-		if (smt.executeUpdate("update usuario set saldoLibre='" + saldoLibre + "' where dni='" + this.dni + "'") > 0) {
+		if (smt.executeUpdate("update usuario set saldoLibre='" + saldoLibre + "' where nombre='" + this.nombre + "'") > 0) {
 			this.saldoLibre = saldoLibre;
 		}
 
@@ -626,6 +628,10 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	 */
 	public static boolean esComprada(ArrayList<Operacion> numeroAccionesCompradas) {
 		if (numeroAccionesCompradas != null) {
+			Operacion diferencia;
+			float dinero;
+			//diferencia=dinero/valor;
+			//numeroAccionesCompradas.add(diferencia);
 			return true;
 		} else {
 			return false;

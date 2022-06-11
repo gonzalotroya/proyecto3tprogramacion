@@ -30,6 +30,10 @@ import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -182,9 +186,39 @@ public class PantallaRegistro extends JPanel {
 		add(campoBanco);
 		campoBanco.setColumns(10);
 		
+		JButton botonInforme = new JButton("Descargar manual");
+		botonInforme.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				File manual=new File("manual.txt");
+				
+				FileWriter m;
+				try {
+					m = new FileWriter(manual);
+					PrintWriter q=new PrintWriter(m);
+					q.println("Este es el manual de registro");
+					q.println("Introduce todos tus datos segun lo indican los campos");
+					q.println("Los campos con restricciones son email donde tendras que poner un @,");
+					q.println("fecha de nacimiento que tendras que usar un formato dd/mm/yyyy,");
+					q.println("tendras que aceptar los terminos de condiciones y no dejar la contraseña vacia");
+
+					q.close();
+					JOptionPane.showMessageDialog(ventana, "Descarga exitosa","Revise el manual",JOptionPane.PLAIN_MESSAGE);
+
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			}
+		});
+		botonInforme.setBounds(188, 386, 210, 23);
+		add(botonInforme);
+		
 		JLabel imagenFondo = new JLabel("");
-		imagenFondo.setIcon(new ImageIcon("C:\\Users\\Gonza\\eclipse-workspace\\broker\\grafico.jpg"));
-		imagenFondo.setBounds(0, 0, 607, 414);
+		imagenFondo.setIcon(new ImageIcon("./grafico.jpg"));
+		imagenFondo.setBounds(0, 0, 607, 415);
 		add(imagenFondo);
 
 		botonRegistro.addMouseListener(new MouseAdapter() {
@@ -192,7 +226,7 @@ public class PantallaRegistro extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					int saldoInvertido=0;
-					int saldoLibre=0;
+					int saldoLibre=10000;
 					ArrayList<Operacion> numeroAccionesCompradas =(ArrayList<Operacion>) null;
 					String dni=campoDNI.getText();
 					String email = campoEmail.getText();
@@ -247,4 +281,5 @@ public class PantallaRegistro extends JPanel {
 				} 
 			}
 		});
-}}
+}	
+}

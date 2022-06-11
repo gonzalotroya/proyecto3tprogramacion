@@ -18,17 +18,20 @@ import javax.swing.border.LineBorder;
 
 import clases.Accion;
 import clases.Empresa;
+import clases.Usuario;
 import dialogoemergente.EmergenteEditar;
 import pantalla.Ventana;
 
 public class ElementoCartera extends JPanel{
 	private Ventana ventana;
 	private Empresa empresa;
+	//private Usuario usuario;
 	
 	public ElementoCartera(Ventana v,Empresa e) {
 		setBorder(new LineBorder(new Color(218, 165, 32), 3, true));
 		this.ventana=v;
 		this.empresa=e;
+		
 		
 		this.setMaximumSize(new Dimension(80000,70));
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -109,5 +112,7 @@ public class ElementoCartera extends JPanel{
 		add(botonEditar, gbc_botonEditar);
 		
 	}
+
+	
 
 }
