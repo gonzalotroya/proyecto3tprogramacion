@@ -50,8 +50,9 @@ CONSTRAINT oper_id foreign key (oper_id) references operaciones(ope_id)
 
 create table empresa(
 valor float,
-nombre varchar(100) primary key,
-mercado VARCHAR(100)
+nombre varchar(100),
+mercado VARCHAR(100),
+primary key(nombre)
 );
 INSert into empresa VALUES(2380,'Alphabet','USA');
 INSert into empresa VALUES(1.16,'sens','USA');
@@ -60,6 +61,11 @@ INSert into empresa VALUES(4.65,'Telefonica','Europa');
 INSert into empresa VALUES(15.60,'Repsol','Europa');
 INSert into empresa VALUES(38.90,'CRH','Europa');
 
+Create table empresaComprada(
+valor float,
+nombre varchar(100) primary key,
+mercado VARCHAR(100)
+);
 create table opcion(
 calls float,
 corto float,
@@ -73,3 +79,8 @@ cuerpo varchar(900),
 fecha Date
 );
 INSERT INTO noticias VALUES('Subida nice','Los son buenos','2022-06-22');
+INSERT INTO noticias VALUES('Los mercados estan estables','Apertura estable','2022-06-23');
+INSERT INTO noticias VALUES('Ligeras caidas','Suaves caidas','2022-06-24');
+INSERT INTO noticias VALUES('Subida ligera','Ligera subida','2022-06-25');
+INSERT INTO noticias VALUES('Subida moderada','Subida moderada','2022-06-26');
+INSERT INTO noticias VALUES('Gran subida','Auge en los mercados','2022-06-27');
