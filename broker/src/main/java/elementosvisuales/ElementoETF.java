@@ -19,6 +19,7 @@ import javax.swing.border.LineBorder;
 import clases.ETF;
 import clases.Empresa;
 import dialogoemergente.EmergenteETF;
+import dialogoemergente.EmergenteETFVender;
 import dialogoemergente.EmergenteEditar;
 import pantalla.Ventana;
 
@@ -68,7 +69,7 @@ public class ElementoETF extends JPanel{
 		botonVender.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				EmergenteETF editor=new EmergenteETF(ventana, ETF);
+				EmergenteETFVender editor=new EmergenteETFVender(ventana, ETF);
 				editor.setVisible(true);
 			}
 		});

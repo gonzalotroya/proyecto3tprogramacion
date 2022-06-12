@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import clases.Accion;
+import clases.ETF;
 import clases.Empresa;
 import clases.Usuario;
 import dialogoemergente.EmergenteEditar;
@@ -30,6 +31,7 @@ import pantalla.Ventana;
 public class ElementoCartera extends JPanel{
 	private Ventana ventana;
 	private Empresa empresa;
+	private ETF etf;
 	//private Usuario usuario;
 	/**
 	 * Funcion que toma desde la clase ventana y empresa  y posiciona una interfaz 
@@ -39,6 +41,7 @@ public class ElementoCartera extends JPanel{
 		setBorder(new LineBorder(new Color(218, 165, 32), 3, true));
 		this.ventana=v;
 		this.empresa=e;
+		//this.etf=o;
 		
 		
 		this.setMaximumSize(new Dimension(80000,70));
