@@ -20,6 +20,7 @@ import clases.Accion;
 import clases.Empresa;
 import clases.Usuario;
 import dialogoemergente.EmergenteEditar;
+import dialogoemergente.EmergenteVender;
 import pantalla.Ventana;
 
 public class ElementoCartera extends JPanel{
@@ -64,7 +65,7 @@ public class ElementoCartera extends JPanel{
 		botonVender.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				EmergenteEditar editor=new EmergenteEditar(ventana, empresa);
+				EmergenteVender editor=new EmergenteVender(ventana, empresa);
 				editor.setVisible(true);
 			}
 		});
