@@ -26,7 +26,11 @@ public class ElementoETF extends JPanel{
 	private Ventana ventana;
 	private ETF ETF;
 	//private Usuario usuario;
-	
+	/**
+	 * Funcion que toma desde la clase ventana y etf  y posiciona una interfaz 
+	 * @param v variable de la clase ventana
+	 * @param o variable de la clase etf
+	 */
 	public ElementoETF(Ventana v,ETF o) {
 		setBorder(new LineBorder(new Color(218, 165, 32), 3, true));
 		this.ventana=v;
@@ -96,7 +100,9 @@ public class ElementoETF extends JPanel{
 		gbc_labelMercado.gridx = 3;
 		gbc_labelMercado.gridy = 1;
 		add(labelMercado, gbc_labelMercado);
-		
+		/**
+		 * botonEditar llama al elemento emergenteEditar para permitir comprar
+		 */
 		JButton botonEditar = new JButton("Comprar");
 		botonEditar.addMouseListener(new MouseAdapter() {
 			@Override

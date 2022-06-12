@@ -19,7 +19,21 @@ import clases.Empresa;
 import clases.Usuario;
 import pantalla.Ventana;
 
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class EmergenteETF extends JDialog{
+	/**
+	 * @param ventana madre toma desde la clase ventana y lo inserta en una variable 
+	 * @param Empresa etfEditar  toma desde la clase etf y lo inserta en una variable 
+	 * @param Usuario usuario toma desde la clase usuario y lo inserta en una variable 
+	 * @param campoValor es un JtextField 
+	 * @param campoNombre  es un JtextField 
+	 * @param campoMercado  es un JtextField 
+	 * @param campoDinero  es un JtextField 
+	 */
 	private Ventana madre;
 	private ETF etfEditar;
 	private Usuario usuario;
@@ -27,7 +41,11 @@ public class EmergenteETF extends JDialog{
 	private JTextField campoNombre;
 	private JTextField campoMercado;
 	private JTextField campoDinero;
-	
+	/**
+	 * 	 * Funcion que toma desde la clase ventana y etf  y posiciona una interfaz 
+	 * @param v
+	 * @param o
+	 */
 	
 	public EmergenteETF(Ventana v,ETF o) {
 		this.madre=v;
@@ -99,7 +117,9 @@ public class EmergenteETF extends JDialog{
 		gbc_labelContraseña.gridx = 2;
 		gbc_labelContraseña.gridy = 4;
 		getContentPane().add(labelContraseña, gbc_labelContraseña);
-		
+		/**
+		 * botonAceptar cuando es pinchado toma los valores de  etf y llama a las funciones comprar
+		 */
 		JButton botonAceptar = new JButton("Aceptar");
 		final EmergenteETF thisRef=this;
 		botonAceptar.addMouseListener(new MouseAdapter() {
@@ -148,7 +168,9 @@ public class EmergenteETF extends JDialog{
 		gbc_botonAceptar.gridx = 3;
 		gbc_botonAceptar.gridy = 8;
 		getContentPane().add(botonAceptar, gbc_botonAceptar);
-		
+		/**
+		 * botonCancelar cierra la ventana emergente si es pinchado
+		 */
 		JButton botonCancelar = new JButton("Cancelar");
 		botonCancelar.addMouseListener(new MouseAdapter() {
 			@Override

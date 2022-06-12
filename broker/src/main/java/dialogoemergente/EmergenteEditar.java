@@ -25,8 +25,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class EmergenteEditar extends JDialog{
+	/**
+	 * @param ventana madre toma desde la clase ventana y lo inserta en una variable 
+	 * @param Empresa empresaEditar  toma desde la clase empresa y lo inserta en una variable 
+	 * @param Usuario usuario toma desde la clase usuario y lo inserta en una variable 
+	 * @param campoValor es un JtextField 
+	 * @param campoNombre  es un JtextField 
+	 * @param campoMercado  es un JtextField 
+	 * @param campoDinero  es un JtextField 
+	 */
 	private Ventana madre;
 	private Empresa empresaEditar;
 	private Usuario usuario;
@@ -35,7 +48,11 @@ public class EmergenteEditar extends JDialog{
 	private JTextField campoMercado;
 	private JTextField campoDinero;
 	
-	
+	/**
+	 * Funcion que toma desde la clase ventana y empresa  y posiciona una interfaz 
+	 * @param v variable de la clase ventana
+	 * @param e variable de la clase empresa
+	 */
 	public EmergenteEditar(Ventana v,Empresa e) {
 		this.madre=v;
 		this.empresaEditar=e;
@@ -47,7 +64,9 @@ public class EmergenteEditar extends JDialog{
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
-		
+		/**
+		 * label nombre
+		 */
 		JLabel labelNombre = new JLabel("Nombre");
 		GridBagConstraints gbc_labelNombre = new GridBagConstraints();
 		gbc_labelNombre.anchor = GridBagConstraints.EAST;
@@ -55,7 +74,9 @@ public class EmergenteEditar extends JDialog{
 		gbc_labelNombre.gridx = 2;
 		gbc_labelNombre.gridy = 1;
 		getContentPane().add(labelNombre, gbc_labelNombre);
-		
+		/**
+		 * campoNombre que toma el nombre de empresa desde su clase
+		 */
 		campoNombre = new JTextField(this.empresaEditar.getNombre());		
 		GridBagConstraints gbc_campoNombre = new GridBagConstraints();
 		gbc_campoNombre.insets = new Insets(0, 0, 5, 5);
@@ -64,7 +85,9 @@ public class EmergenteEditar extends JDialog{
 		gbc_campoNombre.gridy = 1;
 		getContentPane().add(campoNombre, gbc_campoNombre);
 		campoNombre.setColumns(10);
-		
+		/**
+		 * label valor
+		 */
 		JLabel labelValor = new JLabel("Valor");
 		GridBagConstraints gbc_labelValor = new GridBagConstraints();
 		gbc_labelValor.anchor = GridBagConstraints.EAST;
@@ -73,6 +96,9 @@ public class EmergenteEditar extends JDialog{
 		gbc_labelValor.gridy = 2;
 		getContentPane().add(labelValor, gbc_labelValor);
 		
+		/**
+		 * campoValor toma el valor desde su calse
+		 */
 		campoValor = new JTextField(" "+this.empresaEditar.getValor());
 		GridBagConstraints gbc_campoValor = new GridBagConstraints();
 		gbc_campoValor.insets = new Insets(0, 0, 5, 5);
@@ -82,6 +108,9 @@ public class EmergenteEditar extends JDialog{
 		getContentPane().add(campoValor, gbc_campoValor);
 		campoValor.setColumns(10);
 		
+		/**
+		 * labelDinero
+		 */
 		JLabel labelDinero = new JLabel("Dinero");
 		GridBagConstraints gbc_labelDinero = new GridBagConstraints();
 		gbc_labelDinero.anchor = GridBagConstraints.EAST;
@@ -98,7 +127,9 @@ public class EmergenteEditar extends JDialog{
 		gbc_campoDinero.gridy = 3;
 		getContentPane().add(campoDinero, gbc_campoDinero);
 		campoDinero.setColumns(10);
-		
+		/**
+		 * label Mercado
+		 */
 		JLabel labelContraseña = new JLabel("Mercado");
 		GridBagConstraints gbc_labelContraseña = new GridBagConstraints();
 		gbc_labelContraseña.insets = new Insets(0, 0, 5, 5);
@@ -106,7 +137,9 @@ public class EmergenteEditar extends JDialog{
 		gbc_labelContraseña.gridx = 2;
 		gbc_labelContraseña.gridy = 4;
 		getContentPane().add(labelContraseña, gbc_labelContraseña);
-		
+		/**
+		 * botonAceptar cuando es pinchado toma los valores de la empresa y llama a las funciones comprar
+		 */
 		JButton botonAceptar = new JButton("Aceptar");
 		final EmergenteEditar thisRef=this;
 		botonAceptar.addMouseListener(new MouseAdapter() {
@@ -141,7 +174,9 @@ public class EmergenteEditar extends JDialog{
 
 			}
 		});
-		
+		/**
+		 * campomercado toma el valor del Mercado desde su clase
+		 */
 		campoMercado = new JTextField(" "+this.empresaEditar.getMercado());
 		GridBagConstraints gbc_campoMercado = new GridBagConstraints();
 		gbc_campoMercado.insets = new Insets(0, 0, 5, 5);
@@ -156,6 +191,9 @@ public class EmergenteEditar extends JDialog{
 		gbc_botonAceptar.gridy = 8;
 		getContentPane().add(botonAceptar, gbc_botonAceptar);
 		
+		/**
+		 * botonCancelar cierra la ventana emergente si es pinchado
+		 */
 		JButton botonCancelar = new JButton("Cancelar");
 		botonCancelar.addMouseListener(new MouseAdapter() {
 			@Override

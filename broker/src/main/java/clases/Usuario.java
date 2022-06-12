@@ -20,6 +20,19 @@ import utils.UtilsDB;
  */
 public class Usuario extends EntidadConNombre implements Comparable {
 
+	/**
+	 * @param ArrayList<Operacion> numeroAccionesCompradas Almacena el numero de acciones
+	 * @param saldoInvertido dinero invertido
+	 * @param saldoLibre dinero no usado
+	 * @param apellidos String que da el apellido 
+	 * @param cuentaBanco String que toma el IBAN del usuario
+	 * @param dni STring que toma el dni del usuario
+	 * @param telefono int que toma el telefono
+	 * @param email String que toma el email
+	 * @param contraseña String que toma la contraseña
+	 * @param fechaNacimiento Da una fecha
+	 * @param valor  variable de empresa que pone el valor de una empresa
+	 */
 	private ArrayList<Operacion> numeroAccionesCompradas;
 	private int saldoInvertido;
 	private int saldoLibre;
@@ -35,7 +48,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 
 	/**
 	 * Getter fechaNacimiento
-	 * @return fechaNacimiento
+	 * @return fechaNacimiento devuelve una fecha
 	 */
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
@@ -43,8 +56,8 @@ public class Usuario extends EntidadConNombre implements Comparable {
 
 	/**
 	 * Setter de FechaNacimiento que conecta a la base de datos y la actualiza
-	 * @param fechaNacimiento
-	 * @throws SQLException
+	 * @param fechaNacimiento da una fecha
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setFechaNacimiento(LocalDate fechaNacimiento) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -72,7 +85,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	/**
 	 * Setter de contraseña que conecta a la base de datos y la actualiza
 	 * @param contraseña
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setContraseña(String contraseña) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -99,7 +112,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	/**
 	 * Setter de numeroAccionesCompradas que conecta a la base de datos y la actualiza
 	 * @param numeroAccionesCompradas
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setNumeroAccionesCompradas(ArrayList<Operacion> numeroAccionesCompradas) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -126,7 +139,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	/**
 	 * Setter saldoInvertido que conecta con base de datos y la actualiza
 	 * @param saldoInvertido
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setSaldoInvertido(int saldoInvertido) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -152,7 +165,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	/**
 	 * Setter saldoLibre que conecta con base de datos y la actualiza
 	 * @param saldoLibre
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setSaldoLibre(int saldoLibre) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -178,7 +191,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	/**
 	 * Setter apellidos que no conecta con base de datos y la actualiza
 	 * @param apellidos
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setApellidos(String apellidos) throws SQLException {
 		// Primero intentamos el update, si no funciona en BD no se hace en java.
@@ -204,7 +217,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	/**
 	 * Setter cuentaBanco que no conecta con base de datos y la actualiza
 	 * @param cuentaBanco
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setCuentaBanco(String cuentaBanco) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -229,7 +242,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	/**
 	 * Setter dni que no conecta con base de datos y la actualiza
 	 * @param dni
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setDni(String dni) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -254,7 +267,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	/**
 	 * Setter telefono que no conecta con base de datos y la actualiza
 	 * @param telefono
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setTelefono(String telefono) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -279,7 +292,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	/**
 	 * Setter email que no conecta con base de datos y la actualiza
 	 * @param email
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setEmail(String email) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -308,10 +321,10 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	 * @param email
 	 * @param contraseña
 	 * @param fechaNacimiento
-	 * @throws SQLException
-	 * @throws ContraseñaVaciaException
-	 * @throws EmailValidoException
-	 */
+	 * @throws SQLException Da el error del sql
+	 * @throws ContraseñaVaciaException da un error que impide dejar la contraseña vacia
+	 * @throws EmailValidoException da un error que impide dejar un email sin @
+	 */ 
 	public Usuario(String nombre, ArrayList<Operacion> numeroAccionesCompradas, int saldoInvertido, int saldoLibre,
 			String apellidos, String cuentaBanco, String dni, String telefono, String email, String contraseña,
 			LocalDate fechaNacimiento) throws SQLException, ContraseñaVaciaException, EmailValidoException {
@@ -361,7 +374,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	 * Constructor usuario que toma los datos de usuario y contraseña solamente para permitir el login en la interfaz
 	 * @param nombre
 	 * @param contraseña
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 * @throws ContraseñaIncorrectaException
 	 * @throws UsuarioNoExisteException
 	 */
@@ -389,43 +402,6 @@ public class Usuario extends EntidadConNombre implements Comparable {
         	this.fechaNacimiento=cursor.getDate("fechaNacimiento").toLocalDate();
         	this.telefono=cursor.getString("telefono");
             UtilsDB.desconectarBD();
-            //
-          /* Statement smt2=UtilsDB.conectarBD();
-           smt2.executeQuery("select * from acciones where usuario='"+dni+"'");
-            while(numeroAccionesCompradas!= null) {
-          
-            	ArrayList<Operacion>numeroAccionesCompradas =new ArrayList<Operacion>();
-            	for(int i = 0;i<numeroAccionesCompradas.size();i++){
-            		if(numeroAccionesCompradas.get(i).esComprada(getNumeroAccionesCompradas())){
-                         numeroAccionesCompradas.add(numeroAccionesCompradas.get(i));
-                         }
-                         
-                        }
-            	}
-           
-            */
-            	/*
-             * 
-             * 
-             * arraylist todas ls acciones(las pilla d bbdd)
-             * arraylist comprados(solo inicializarlo)
-             * 
-             * for(todasLasAcciones.size){
-             * if(todasLasAcciones-get(i).isComprada(getter comprada(bool)){
-             * comprados.add(todasLasAcciones-get(i));
-             * }
-             * 
-             * }
-             * 
-             * 
-             * */
-       
-            //Creas un bucle que te vaya relleneando acciones y metiendolo en el arraylist interno
-           // smt2.executeQuery("select * from acciones where usuario='"+this.dni+"'");
-            //Creas un bucle que te vaya relleneando acciones y metiendolo en el arraylist interno
-           // smt2.executeQuery("select * from etf where usuario='"+this.dni+"'");
-            //Creas un bucle que te vaya relleneando etf y metiendolo en el arraylist interno
-           // UtilsDB.desconectarBD();
         }else{
 		UtilsDB.desconectarBD();
 		throw new UsuarioNoExisteException("No existe el usuario en la BD.");
@@ -446,7 +422,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 	 * @param fechaNacimiento
 	 * @throws EmailValidoException
 	 * @throws ContraseñaVaciaException
-	 * @throws SQLException
+	 * @throws SQLException Da el error del sql
 	 */
 	public Usuario(String nombre, int saldoInvertido, int saldoLibre, String apellidos, String cuentaBanco, String dni,
 			String telefono, String email, String contraseña, LocalDate fechaNacimiento)
@@ -622,7 +598,7 @@ public class Usuario extends EntidadConNombre implements Comparable {
 		return this.nombre.equals(otro.nombre);
 	}
 	/**
-	 * 
+	 * Funcion que añade al numero de acciones
 	 * @param numeroAccionesCompradas
 	 * @return
 	 */

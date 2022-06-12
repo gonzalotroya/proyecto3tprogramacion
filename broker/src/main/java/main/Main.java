@@ -11,7 +11,10 @@ import enums.EnumeracionLugares;
 import pantalla.Ventana;
 
 public class Main {
-
+/**
+ * Main que toma el args de argumentos para rellenar el login
+ * @param args
+ */
 	public static void main(String[] args) {
 
 		String argN = ""; // Nombre Usuario

@@ -7,11 +7,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class BotonAzul extends Boton{
 	public BotonAzul(String m) {
 			super(m);
 			estiloPorDefecto();
+			/**
+			 * define un estilo cuando entra en el boton
+			 */
 			this.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseEntered(MouseEvent e) {
@@ -25,6 +32,9 @@ public class BotonAzul extends Boton{
 
 			});
 		}
+	/**
+	 * Define un estilo por defecto
+	 */
 	private void estiloPorDefecto() {
 		this.setForeground(Color.gray);
 		this.setBackground(Color.blue);

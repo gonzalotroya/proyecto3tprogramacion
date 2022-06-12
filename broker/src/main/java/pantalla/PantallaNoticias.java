@@ -18,10 +18,17 @@ import javax.swing.JList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class PantallaNoticias extends JPanel{
 	private Ventana ventana;
-
+	/**
+	 * Funcion que toma desde la clase ventana y posiciona una interfaz 
+	 * @param v variable de la clase ventana
+	 */
 	public PantallaNoticias(Ventana v) {
 		this.ventana=v;
 

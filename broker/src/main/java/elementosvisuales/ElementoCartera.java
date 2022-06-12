@@ -22,13 +22,20 @@ import clases.Usuario;
 import dialogoemergente.EmergenteEditar;
 import dialogoemergente.EmergenteVender;
 import pantalla.Ventana;
-
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class ElementoCartera extends JPanel{
 	private Ventana ventana;
 	private Empresa empresa;
 	//private Usuario usuario;
-	
-	public ElementoCartera(Ventana v,Empresa e) {
+	/**
+	 * Funcion que toma desde la clase ventana y empresa  y posiciona una interfaz 
+	 * @param v variable de la clase ventana
+	 * @param e variable de la clase empresa
+	 */	public ElementoCartera(Ventana v,Empresa e) {
 		setBorder(new LineBorder(new Color(218, 165, 32), 3, true));
 		this.ventana=v;
 		this.empresa=e;
@@ -97,7 +104,9 @@ public class ElementoCartera extends JPanel{
 		gbc_labelMercado.gridx = 3;
 		gbc_labelMercado.gridy = 1;
 		add(labelMercado, gbc_labelMercado);
-		
+		/**
+		 * botonEditar llama al elemento emergenteEditar para permitir comprar
+		 */
 		JButton botonEditar = new JButton("Comprar");
 		botonEditar.addMouseListener(new MouseAdapter() {
 			@Override

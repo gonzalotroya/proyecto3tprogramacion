@@ -43,7 +43,11 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import java.awt.Color;
-
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class PantallaRegistro extends JPanel {
 	private Ventana ventana;
 	private JTextField campoEmail;
@@ -55,7 +59,10 @@ public class PantallaRegistro extends JPanel {
 	private JTextField campoTelefono;
 	private JTextField campoBanco;
 	private final ButtonGroup grupoCondiciones = new ButtonGroup();
-
+	/**
+	 * Funcion que toma desde la clase ventana y posiciona una interfaz 
+	 * @param v variable de la clase ventana
+	 */
 	public PantallaRegistro(Ventana v) {
 		this.ventana = v;
 		setLayout(null);

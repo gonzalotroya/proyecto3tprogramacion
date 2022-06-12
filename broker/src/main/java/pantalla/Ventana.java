@@ -10,7 +10,11 @@ import clases.Usuario;
 import java.awt.Cursor;
 import java.util.HashMap;
 import java.util.Iterator;
-
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class Ventana extends JFrame{
 	private JPanel pantallaActual;
 	protected Usuario usuarioLogado;
@@ -19,7 +23,11 @@ public class Ventana extends JFrame{
 	private String argC;
 	public HashMap<String,JPanel> pantallas;
 
-
+/**
+ * Funcion que toma desde la clase ventana y determina como se moveran las interfaces entre diferentes pantallas 
+ * @param argN argumento de nombre
+ * @param argC argumento de contraseña
+ */
 	public Ventana(String argN,String argC) {
 		pantallas = new HashMap<String,JPanel>();
 		empresa=new Empresa();

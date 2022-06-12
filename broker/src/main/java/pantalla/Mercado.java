@@ -26,11 +26,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.Color;
-
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class Mercado extends JPanel {
 	private Ventana ventana;
 	private Empresa empresa;
-
+	/**
+	 * Funcion que toma desde la clase ventana y posiciona una interfaz 
+	 * @param v variable de la clase ventana
+	 */
 	public Mercado(final Ventana v) {
 		setBackground(new Color(0, 204, 153));
 		this.ventana = v;
@@ -92,6 +99,9 @@ public class Mercado extends JPanel {
 		scrollPane.setViewportView(listaEmpresa);
 		listaEmpresa.setLayout(new BoxLayout(listaEmpresa, BoxLayout.Y_AXIS));
 		final ArrayList<Empresa> todos = Empresa.getTodos();
+		/**
+		 * botonActualizar toma todos los elementos de empresas y las muestra en un elemento visual
+		 */
 		botonActualizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

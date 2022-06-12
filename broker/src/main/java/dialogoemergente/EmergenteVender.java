@@ -22,6 +22,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EmergenteVender extends JDialog{
+	/**
+	 * @param ventana madre toma desde la clase ventana y lo inserta en una variable 
+	 * @param Empresa empresaEditar  toma desde la clase empresa y lo inserta en una variable 
+	 * @param Usuario usuario toma desde la clase usuario y lo inserta en una variable 
+	 * @param campoValor es un JtextField 
+	 * @param campoNombre  es un JtextField 
+	 * @param campoMercado  es un JtextField 
+	 * @param campoDinero  es un JtextField 
+	 */
 	private Ventana madre;
 	private Empresa empresaEditar;
 	private Usuario usuario;
@@ -30,7 +39,11 @@ public class EmergenteVender extends JDialog{
 	private JTextField campoMercado;
 	private JTextField campoDinero;
 	
-	
+	/**
+	 * Funcion que toma desde la clase ventana y empresa  y posiciona una interfaz 
+	 * @param v variable de la clase ventana
+	 * @param e variable de la clase empresa
+	 */
 	public EmergenteVender(Ventana v,Empresa e) {
 		this.madre=v;
 		this.empresaEditar=e;
@@ -100,7 +113,9 @@ public class EmergenteVender extends JDialog{
 		gbc_labelContraseña.gridx = 2;
 		gbc_labelContraseña.gridy = 4;
 		getContentPane().add(labelContraseña, gbc_labelContraseña);
-		
+		/**
+		 * botonAceptar cuando es pinchado toma los valores de la empresa y llama a las funciones comprar
+		 */
 		JButton botonAceptar = new JButton("Aceptar");
 		final EmergenteVender thisRef=this;
 		botonAceptar.addMouseListener(new MouseAdapter() {
@@ -147,7 +162,9 @@ public class EmergenteVender extends JDialog{
 		gbc_botonAceptar.gridx = 3;
 		gbc_botonAceptar.gridy = 8;
 		getContentPane().add(botonAceptar, gbc_botonAceptar);
-		
+		/**
+		 * botonCancelar cierra la ventana emergente cuando es pinchado
+		 */
 		JButton botonCancelar = new JButton("Cancelar");
 		botonCancelar.addMouseListener(new MouseAdapter() {
 			@Override

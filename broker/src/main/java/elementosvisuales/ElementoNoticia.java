@@ -22,7 +22,11 @@ import clases.Noticia;
 import dialogoemergente.EmergenteEditar;
 import dialogoemergente.EmergenteNoticia;
 import pantalla.Ventana;
-
+/**
+ * Funcion que toma desde la clase ventana y noticia  y posiciona una interfaz 
+ * @param v variable de la clase ventana
+ * @param n variable de la clase noticia
+ */
 	public class ElementoNoticia  extends JPanel{
 		private Ventana ventana;
 		private Noticia noticia;
@@ -59,7 +63,9 @@ import pantalla.Ventana;
 			gbc_labelNombre.gridx = 1;
 			gbc_labelNombre.gridy = 0;
 			add(labelNombre, gbc_labelNombre);
-			
+			/**
+			 * botonVer llama al elemento emergenteNoticia para permitir ver la noticia
+			 */
 			JButton botonVer = new JButton("Ver");
 			botonVer.addMouseListener(new MouseAdapter() {
 				@Override

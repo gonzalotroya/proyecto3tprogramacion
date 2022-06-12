@@ -19,7 +19,7 @@ public class Opcion extends Operacion {
 	/**
 	 * Getter de interes
 	 * 
-	 * @return interes
+	 * @return interes Devuelve un porcentaje
 	 */
 	public int getInteres() {
 		return interes;
@@ -27,8 +27,8 @@ public class Opcion extends Operacion {
 
 	/**
 	 * Setter de interes que conecta a la base de datos y la actualiza
-	 * @param interes
-	 * @throws SQLException
+	 * @param interes define un porcentaje
+	 * @throws SQLException devuelve un error de sql
 	 */
 
 	public void setInteres(int interes) throws SQLException {
@@ -42,15 +42,15 @@ public class Opcion extends Operacion {
 	}
 	/**
 	 * Getter de calls
-	 * @return calls
+	 * @return calls Devuelve el precio del call
 	 */
 	public int getCall() {
 		return calls;
 	}
 	/**
 	 * Setter de call que conecta a la base de datos y la actualiza
-	 * @param call
-	 * @throws SQLException
+	 * @param call Define el precio 
+	 * @throws SQLException devuelve un error de sql
 	 */
 	public void setCall(int call) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -63,15 +63,15 @@ public class Opcion extends Operacion {
 	}
 	/**
 	 * Getter de corto
-	 * @return corto
+	 * @return corto Devuelve el precio de corto
 	 */
 	public int getCorto() {
 		return corto;
 	}
 	/**
 	 * Setter de corto que conecta a la base de datos y la actualiza
-	 * @param corto
-	 * @throws SQLException
+	 * @param corto Define el precio de corto
+	 * @throws SQLException devuelve un error de sql
 	 */
 	public void setCorto(int corto) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
@@ -84,9 +84,9 @@ public class Opcion extends Operacion {
 	}
 	/**
 	 * Construtctor que define todos los datos de opcion de una empresa
-	 * @param interes
-	 * @param calls
-	 * @param corto
+	 * @param interes Porcentaje  del interes
+	 * @param calls Define el precio
+	 * @param corto Define el precio
 	 */
 	public Opcion(int interes, int calls, int corto) {
 		super();
@@ -101,8 +101,4 @@ public class Opcion extends Operacion {
 	public String toString() {
 		return "Opcion [interes=" + interes + ", calls=" + calls + ", corto=" + corto + "]";
 	}
-
-	public static void precio() {
-	}
-
 }

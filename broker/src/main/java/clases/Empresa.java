@@ -29,13 +29,28 @@ public class Empresa {
 	private float valor;
 	private boolean esComprada;
 
+	/**
+	 * Devuelve un boolean que se que encargada de decir si se ha comprado o no
+	 * @param b variable true o false
+	 * @return true o false
+	 */
 	public boolean isEsComprada(boolean b) {
 		return esComprada;
 	}
+	/**
+	 * Devuelve un boolean que se que encargada de decir si se ha vendido o no
+	 * @param b variable true o false
+	 * @return true o false
+	 */
 	public boolean isEsVendida(boolean b) {
 		return esComprada;
 	}
 
+	/**
+	 * Funcion que se encarga de vender las empresas actualizando en base de datos  el valor estaComprado como false
+	 * @param text la variable que contiene la empresa
+	 * @throws SQLException Error sql que señala el fallo de base de datos
+	 */
 	public static void venderEmpresas(String text) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
 
@@ -45,6 +60,11 @@ public class Empresa {
 
 		UtilsDB.desconectarBD();
 	}
+	/**
+	 * Funcion que se encarga de comprar las empresas actualizando en base de datos  el valor estaComprado como true
+	 * @param text la variable que contiene la empresa
+	 * @throws SQLException Error sql que señala el fallo de base de datos
+	 */
 	public static void comprarEmpresas(String text) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
 
@@ -55,7 +75,11 @@ public class Empresa {
 		UtilsDB.desconectarBD();
 	}
 	
-
+	/**
+	 * Setter de esComprada que pone un true o un false
+	 * @param esComprada variable true o false
+	 * @throws SQLException Error sql que señala el fallo de base de datos
+	 */
 	public void setEsComprada(boolean esComprada) throws SQLException {
 		/*
 		 * Statement smt = UtilsDB.conectarBD();
@@ -69,6 +93,10 @@ public class Empresa {
 										 */
 	}
 
+	/**
+	 * Getter de nombre
+	 * @return nombre que es un String del nombre de la empresa
+	 */
 	public String getNombre() {
 		return nombre;
 	}
@@ -206,13 +234,6 @@ public class Empresa {
 		this.valor = valor;
 	}
 
-	/*
-	 * public Empresa(float valor, String nombre, String mercado) {
-	 * 
-	 * super();
-	 * 
-	 * this.nombre = nombre; this.getMercado(); this.valor = valor; }
-	 */
 	/**
 	 * Constructor que no toma los datos de la noticias para insertarlas
 	 * 
@@ -239,6 +260,11 @@ public class Empresa {
 
 	}
 
+	/**
+	 * Constructor de empresa que toma la variable text en la cual se almacena el nombre de la empresa para obtenerlo de base de datos y tomar
+	 * estos datos de base de datos
+	 * @param text String nombre empresa
+	 */
 	public Empresa(String text) {
 
 		Statement smt = UtilsDB.conectarBD();
@@ -267,6 +293,11 @@ public class Empresa {
 
 	}
 
+	/**
+	 * Funcion que obteniendo un arrayList de empresa toma de base de datos los datos de esta y posiciona el valor Comprada como true
+	 * ,es decir,se encarga de comprobar que la empresa esta comprada
+	 * @return listaEmpresa es el arrayList de empresas
+	 */
 	public static ArrayList<Empresa> empresasCompradas() {
 		ArrayList<Empresa> listaEmpresa = new ArrayList<Empresa>();
 
@@ -435,7 +466,7 @@ public class Empresa {
 
 	/**
 	 * Funcion que actualiza los precios de las empresas
-	 * @return 
+	 * @return empresa.this devuelve la misma clase de empresa
 	 */
 	public Empresa actualizar() {
 		Statement smt = UtilsDB.conectarBD();
@@ -443,7 +474,7 @@ public class Empresa {
 		try {
 
 			Random r = new Random();
-			float min = -3;
+			float min = -2;
 			float max = 3;
 			for (float i = min; i <= max; i++) {
 				this.valor = (float) (valor + (Math.random() * (max - min)) + min);

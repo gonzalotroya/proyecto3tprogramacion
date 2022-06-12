@@ -28,11 +28,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.Color;
-
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class PantallaETF extends JPanel {
 	private Ventana ventana;
 	private Empresa empresa;
-
+	/**
+	 * Funcion que toma desde la clase ventana y posiciona una interfaz 
+	 * @param v variable de la clase ventana
+	 */
 	public PantallaETF(final Ventana v) {
 		setBackground(new Color(0, 204, 153));
 		this.ventana = v;
@@ -60,6 +67,9 @@ public class PantallaETF extends JPanel {
 
 		JButton verNoticias = new JButton("Noticias");
 		panel_1.add(verNoticias);
+	/**
+	 * cambia la pantalla
+	 */
 		verNoticias.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

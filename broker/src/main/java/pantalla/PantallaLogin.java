@@ -45,12 +45,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Color;
-
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class PantallaLogin extends JPanel {
 	private Ventana ventana;
 	private JTextField campoUsuario;
 	private JPasswordField campoContraseña;
-
+	/**
+	 * Funcion que toma desde la clase ventana y posiciona una interfaz 
+	 * @param v variable de la clase ventana
+	 */
 	public PantallaLogin(Ventana v, String argN, String argC) {
 		this.ventana = v;
 		setLayout(null);
@@ -152,6 +159,9 @@ public class PantallaLogin extends JPanel {
 		imagenFondo.setBounds(0, 0, 602, 486);
 		add(imagenFondo);
 
+		/**
+		 * Boton que toma el campo usuario y contraseña para permitir el login
+		 */
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

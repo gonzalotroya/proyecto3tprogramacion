@@ -2,14 +2,11 @@ package clases;
 
 import java.util.ArrayList;
 /**
- * 
  * @author gonzalo
- *
  */
 public class Operacion {
 	private int tipoOperacion;
 	private String nombre;
-	private int opeID;
 		
  public int getTipoOperacion() {
 		return tipoOperacion;
@@ -23,24 +20,13 @@ public class Operacion {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getOpeID() {
-		return opeID;
-	}
-	public void setOpeID(int opeID) {
-		this.opeID = opeID;
-	}
 	
 public Operacion(int tipoOperacion, String nombre) {
 		super();
 		this.tipoOperacion = tipoOperacion;
 		this.nombre = nombre;
 	}
-public Operacion() {
-	// TODO Auto-generated constructor stub
-}
-public void comprar() {
- }
- public void vender() {}
+public Operacion() {}
  /**
   * Funcion que comprueba que se compra una accion 
   * @param numeroAccionesCompradas

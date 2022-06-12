@@ -21,14 +21,30 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * 
+ * @author gonzalo
+ *
+ */
 public class EmergenteNoticia extends JDialog{
+	/**
+	 * @param ventana madre toma desde la clase ventana y lo inserta en una variable 
+	 * @param Noticia noticiaVer  toma desde la clase noticia y lo inserta en una variable 
+	 * @param campoValor es un JtextField 
+	 * @param campoNombre  es un JtextField 
+	 * @param campoMercado  es un JtextField 
+	 */
 	private Ventana madre;
 	private Noticia noticiaVer;
 	private JTextField campoValor;
 	private JTextField campoNombre;
 	private JTextField campoMercado;
 	
-	
+	/**
+	 * Funcion que toma desde la clase ventana y noticia  y posiciona una interfaz 
+	 * @param v variable de la clase ventana
+	 * @param n variable de la clase noticia
+	 */
 	public EmergenteNoticia(Ventana v,Noticia n) {
 		this.madre=v;
 		this.noticiaVer=n;
@@ -69,7 +85,9 @@ public class EmergenteNoticia extends JDialog{
 		campoMercado.setBounds(163, 146, 256, 20);
 		getContentPane().add(campoMercado);
 		campoMercado.setColumns(10);
-		
+		/**
+		 * botonCancelar cierra la ventana emergente si es pinchado
+		 */
 		JButton botonCancelar = new JButton("Cerrar");
 		botonCancelar.setBounds(211, 270, 93, 23);
 		botonCancelar.addMouseListener(new MouseAdapter() {

@@ -1,5 +1,9 @@
 package enums;
-
+/**
+ * ENUMs
+ * @author gonzalo
+ *
+ */
 public enum Paises {
 	España,
 	UK,

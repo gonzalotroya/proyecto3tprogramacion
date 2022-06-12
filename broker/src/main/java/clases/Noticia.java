@@ -14,20 +14,25 @@ import utils.UtilsDB;
  *
  */
 public class Noticia extends EntidadConNombre{
+	/**
+	 * @param titular String del titulo de la noticia
+	 * @param fecha devuelve la fehca de la noticia
+	 * @param cuerpo String que devuelve el texto de la noticia
+	 */
 	protected String titular;
 	protected LocalDate fecha;
 	protected String cuerpo;
 	/**
 	 * Getter de fecha
-	 * @return fecha
+	 * @return fecha Devuelve una fecha
 	 */
 	public LocalDate getFecha() {
 		return fecha;
 	}
 	/**
 	 * Setter fecha que conecta con base de datos y actualiza
-	 * @param fecha
-	 * @throws SQLException
+	 * @param fecha Define una fecha
+	 * @throws SQLException Da el error del sql
 	 */
 	public void setFecha(LocalDate fecha) throws SQLException {
 Statement smt = UtilsDB.conectarBD();
@@ -40,15 +45,15 @@ Statement smt = UtilsDB.conectarBD();
 	}
 	/**
 	 * Getter de cuerpo
-	 * @return cuerpo
+	 * @return cuerpo Devuelve el texto de la noticia
 	 */
 	public String getCuerpo() {
 		return cuerpo;
 	}
 	/**
 	 * Setter de cuerpo que conecta a la base de datos y la actualiza
-	 * @param cuerpo
-	 * @throws SQLException
+	 * @param cuerpo Define el texto de la noticia
+	 * @throws SQLException Devuelve el error del sql
 	 */
 	public void setCuerpo(String cuerpo) throws SQLException {
 Statement smt = UtilsDB.conectarBD();
@@ -62,7 +67,7 @@ Statement smt = UtilsDB.conectarBD();
 	
 	/**
 	 * Constructor de noticia que toma solo su nombre para identificarlo por su nombre
-	 * @param nombre
+	 * @param nombre String del nombre de la noticia
 	 */
 	public Noticia(String nombre) {
 		super(nombre);
@@ -71,15 +76,15 @@ Statement smt = UtilsDB.conectarBD();
 	
 	/**
 	 * Getter de titular
-	 * @return titular
+	 * @return titular Devuelve el titular de la noticia
 	 */
 	public String getTitular() {
 		return titular;
 	}
 	/**
 	 * Setter de titular que conecta a la base de datos y la actualiza
-	 * @param titular
-	 * @throws SQLException
+	 * @param titular Define el titular de la noticia
+	 * @throws SQLException Da el error de sql
 	 */
 	public void setTitular(String titular) throws SQLException {
 Statement smt = UtilsDB.conectarBD();
@@ -92,10 +97,10 @@ Statement smt = UtilsDB.conectarBD();
 	}
 	/**
 	 * Constructor que toma todos los datos de noticia y sirve para definir una noticia en su totalidad
-	 * @param nombre
-	 * @param titular
-	 * @param fecha
-	 * @param cuerpo
+	 * @param nombre String da el nombre de la noticia
+	 * @param titular String da el titular de la noticia
+	 * @param fecha LocalDate que da la fecha
+	 * @param cuerpo String del texto de la noticia
 	 */
 	public Noticia(String nombre, String titular, LocalDate fecha, String cuerpo) {
 		super(nombre);
@@ -105,15 +110,18 @@ Statement smt = UtilsDB.conectarBD();
 	}
 	/**
 	 * Constructor que toma solo tres variables y elimina la del titular para que el nombre sea el identificador principal
-	 * @param nombre
-	 * @param fecha
-	 * @param cuerpo
+	 * @param nombre  String da el nombre de la noticia
+	 * @param fecha LocalDate que da la fecha
+	 * @param cuerpo String del texto de la noticia
 	 */
 	public Noticia(String nombre, LocalDate fecha, String cuerpo) {
 		super(nombre);
 		this.fecha = fecha;
 		this.cuerpo = cuerpo;
 	}
+	/**
+	 * Constructor vacio
+	 */
 	public Noticia() {
 		super("");
 		// TODO Auto-generated constructor stub
@@ -125,7 +133,10 @@ Statement smt = UtilsDB.conectarBD();
 	public String toString() {
 		return "Noticia [titular=" + titular + ", fecha=" + fecha + ", cuerpo=" + cuerpo + "]";
 	}
-	
+	/**
+	 * Funcion que devuelve todos las noticias de base de datos
+	 * @return ret Devuelve el query
+	 */
 	public static ArrayList<Noticia> getTodos() {
 		Statement smt = UtilsDB.conectarBD();
 		// Inicializamos un ArrayList para devolver.
@@ -154,6 +165,9 @@ Statement smt = UtilsDB.conectarBD();
 		UtilsDB.desconectarBD();
 		return ret;
 	}
+	/**
+	 * Funcion para cargar des de base de datos sin uso actual
+	 */
 	private void cargaNoticia() {
 
         Statement smt = UtilsDB.conectarBD();

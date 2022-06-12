@@ -14,26 +14,51 @@ import utils.UtilsDB;
  * @author gonzalo
  *
  */
-public class ETF extends Operacion {
+public class ETF  {
 
+	/**
+	 * @param valor es el precio del etf
+	 * @param sectores nombre del etf y su sector
+	 * @param esComprada boolean que comprueba si esta comprada o no
+	 */
 	private float valor;
 	private String sectores;
 	private boolean esComprada;
 
-	
-	public ETF(int tipoOperacion, String nombre, float valor, String sectores, boolean esComprada) {
-		super(tipoOperacion, nombre);
+	/**
+	 * Constructor que posiciona todos los datos de etf  
+	 * @param valor precio del etf
+	 * @param sectores tipo de etf
+	 * @param esComprada boolean que da true o false
+	 */
+	public ETF(float valor, String sectores, boolean esComprada) {
+		super();
 		this.valor = valor;
 		this.sectores = sectores;
 		this.esComprada = esComprada;
 	}
+	/**
+	 * Devuelve un boolean que se que encargada de decir si se ha comprado o no
+	 * @param b variable true o false
+	 * @return true o false
+	 */
 	public boolean isEsComprada(boolean b) {
 		return esComprada;
 	}
+	/**
+	 * Devuelve un boolean que se que encargada de decir si se ha vendido o no
+	 * @param b variable true o false
+	 * @return true o false
+	 */
 	public boolean isEsVendida(boolean b) {
 		return esComprada;
 	}
 
+	/**
+	 * Funcion que se encarga de vender los etf actualizando en base de datos  el valor estaComprado como false
+	 * @param text la variable que contiene el etf
+	 * @throws SQLException Error sql que señala el fallo de base de datos
+	 */
 	public static void venderETF(String text) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
 
@@ -43,6 +68,11 @@ public class ETF extends Operacion {
 
 		UtilsDB.desconectarBD();
 	}
+	/**
+	 * Funcion que se encarga de vender las etf actualizando en base de datos  el valor estaComprado como false
+	 * @param text la variable que contiene la etf
+	 * @throws SQLException Error sql que señala el fallo de base de datos
+	 */
 	public static void comprarETF(String text) throws SQLException {
 		Statement smt = UtilsDB.conectarBD();
 
@@ -53,37 +83,67 @@ public class ETF extends Operacion {
 		UtilsDB.desconectarBD();
 	}
 	
-
+	/**
+	 * Setter esComprada
+	 * @param esComprada boolean true o false
+	 * @throws SQLException Devuelve el error sql
+	 */
 	public void setEsComprada(boolean esComprada) throws SQLException {
 		
 		 this.esComprada = esComprada;
 	}
 
+	/**
+	 * Getter sectores
+	 * @return sectores devuelve un String 
+	 */
 	public String getSectores() {
 		return sectores;
 	}
 
+	/**
+	 * Setter sectores
+	 * @param sectores Define un string
+	 */
 	public void setSectores(String sectores) {
 		this.sectores = sectores;
 	}
 
 	
 
-	
+	/**
+	 * toString de etf
+	 */
 
 	@Override
 	public String toString() {
 		return "ETF [valor=" + valor + ", sectores=" + sectores + ", esComprada=" + esComprada + "]";
 	}
+	/**
+	 * Getter valor
+	 * @return valor devuelve el precio
+	 */
 	public float getValor() {
 		return valor;
 	}
+	/**
+	 * Setter valor
+	 * @param valor Define el precio del etf
+	 */
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
+	/**
+	 * Funcion que define si esta comprado o no
+	 * @return esComprada true o false
+	 */
 	public boolean isEsComprada() {
 		return esComprada;
 	}
+	/**
+	 * Constructor de etf que toma de base de datos los datos de etf mediante el sector insertado en la variable text
+	 * @param text String que devuelve el nombre del sector
+	 */
 	public ETF(String text) {
 
 		Statement smt = UtilsDB.conectarBD();
@@ -110,9 +170,16 @@ public class ETF extends Operacion {
 		UtilsDB.desconectarBD();
 
 	}
+	/**
+	 * Constructor vacio 
+	 */
 	public ETF() {
 		// TODO Auto-generated constructor stub
 	}
+	/**
+	 * Dao getTodos que toma todos los datos de etf desde base de datos
+	 * @return ret ArrayList de etf que almacena el etf seleccionado
+	 */
 	public static ArrayList<ETF> getTodos() {
 		Statement smt = UtilsDB.conectarBD();
 		// Inicializamos un ArrayList para devolver.
@@ -140,6 +207,10 @@ public class ETF extends Operacion {
 		UtilsDB.desconectarBD();
 		return ret;
 	}
+	/**
+	 * DAO que actualiza el desde base de datos y crea un precio aleatorio con un minimo y maximo  para actualizar los precios en la interfaz
+	 * @return ETF.this devuelve la propia clase
+	 */
 	public ETF actualizar() {
 		Statement smt = UtilsDB.conectarBD();
 		boolean ret;
@@ -161,6 +232,10 @@ public class ETF extends Operacion {
 		UtilsDB.desconectarBD();
 		return ETF.this;
 	}
+	/**
+	 * Funcion que toma todos los etfs que han sido compradosy los alamacena en un arrayLIst 
+	 * @return listaETF almacena los etf
+	 */
 	public static ArrayList<ETF> etfCompradas() {
 		ArrayList<ETF> listaETF = new ArrayList<ETF>();
 
