@@ -248,7 +248,7 @@ public class PantallaRegistro extends JPanel {
 						try {
 							new Usuario(nombre,saldoInvertido, saldoLibre,apellidos,cuentaBanco,dni, telefono,email,contraseña,fechaNacimiento);
 							JOptionPane.showMessageDialog(ventana, "Registro con exito","Registro correcto",JOptionPane.PLAIN_MESSAGE);
-							ventana.cambiarAPantalla("login");
+							ventana.cambiarAPantalla("pantallaLogin");
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

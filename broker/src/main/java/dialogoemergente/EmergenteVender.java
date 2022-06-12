@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class EmergenteVender extends JDialog{
 	private Ventana madre;
@@ -83,7 +84,7 @@ public class EmergenteVender extends JDialog{
 		gbc_labelDinero.gridy = 3;
 		getContentPane().add(labelDinero, gbc_labelDinero);
 		
-		campoDinero = new JTextField(this.usuario.getSaldoInvertido());
+		campoDinero = new JTextField();
 		GridBagConstraints gbc_campoDinero = new GridBagConstraints();
 		gbc_campoDinero.insets = new Insets(0, 0, 5, 5);
 		gbc_campoDinero.fill = GridBagConstraints.HORIZONTAL;
@@ -107,9 +108,21 @@ public class EmergenteVender extends JDialog{
 			public void mouseClicked(MouseEvent e) {
 				String nuevoNombre=campoNombre.getText();
 				try {
-					float nuevoValor=Float.parseFloat(campoValor.getText());
-					empresaEditar.setNombre(nuevoNombre);
-					empresaEditar.setValor(nuevoValor);
+					Empresa.venderEmpresas(campoNombre.getText());
+					ArrayList<Empresa> ret = new ArrayList<Empresa>();
+					Empresa actual = new Empresa(campoNombre.getText());
+					
+					System.out.println(actual.getNombre());
+
+					actual.setValor(Float.parseFloat(campoValor.getText()));
+					actual.setNombre(nuevoNombre);
+					actual.getMercado();
+					
+					empresaEditar.isEsComprada(false);
+					System.out.println(actual);
+					System.out.println(campoNombre.getText());
+					ret.add(actual);
+					
 					dispose();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

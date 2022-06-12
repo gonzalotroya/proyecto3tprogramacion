@@ -81,7 +81,7 @@ public class EmergenteNoticia extends JDialog{
 		getContentPane().add(botonCancelar);
 		
 		JLabel labelFoto = new JLabel("");
-		labelFoto.setIcon(new ImageIcon("C:\\Users\\Gonza\\eclipse-workspace\\broker\\kaiser.jpg"));
+		labelFoto.setIcon(new ImageIcon("./kaiser.jpg"));
 		labelFoto.setBounds(0, 0, 484, 361);
 		getContentPane().add(labelFoto);
 	}

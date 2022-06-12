@@ -32,6 +32,7 @@ private Ventana ventana;
 		botonMercado.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			//ventana.recargarPantalla();
 			ventana.cambiarAPantalla("Mercado");
 		}
 	});
@@ -44,7 +45,7 @@ private Ventana ventana;
 		scrollPane.setViewportView(listaAcciones);
 		listaAcciones.setLayout(new BoxLayout(listaAcciones, BoxLayout.Y_AXIS));
 		
-		ArrayList<Empresa>to=Empresa.getComprados();
+		ArrayList<Empresa>to=Empresa.empresasCompradas();
 		ArrayList<Accion>t=Accion.getTodos();
 		for(int i=0;i<to.size();i++) {
 			listaAcciones.add(new ElementoCartera(ventana,to.get(i)));

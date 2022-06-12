@@ -115,15 +115,19 @@ public class EmergenteEditar extends JDialog{
 				String nuevoNombre=campoNombre.getText();
 				
 				try {
-							
+					Empresa.comprarEmpresas(campoNombre.getText());
 					ArrayList<Empresa> ret = new ArrayList<Empresa>();
-					Empresa actual = new Empresa();
-
+					Empresa actual = new Empresa(campoNombre.getText());
+					
+					System.out.println(actual.getNombre());
 
 					actual.setValor(Float.parseFloat(campoValor.getText()));
 					actual.setNombre(nuevoNombre);
 					actual.getMercado();
 					
+					empresaEditar.isEsComprada(true);
+					System.out.println(actual);
+					System.out.println(campoNombre.getText());
 					ret.add(actual);
 					
 					
