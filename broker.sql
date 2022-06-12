@@ -63,11 +63,6 @@ INSert into empresa VALUES(4.65,'Telefonica','Europa',false);
 INSert into empresa VALUES(15.60,'Repsol','Europa',false);
 INSert into empresa VALUES(38.90,'CRH','Europa',false);
 
-Create table empresaComprada(
-valor float,
-nombre varchar(100) primary key,
-mercado VARCHAR(100)
-);
 create table opcion(
 calls float,
 corto float,
