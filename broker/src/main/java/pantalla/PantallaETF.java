@@ -11,9 +11,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import clases.ETF;
 import clases.Empresa;
 import clases.Usuario;
 import elementosvisuales.ElementoCartera;
+import elementosvisuales.ElementoETF;
 
 import javax.swing.JButton;
 import javax.swing.JTextPane;
@@ -27,11 +29,11 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.Color;
 
-public class Mercado extends JPanel {
+public class PantallaETF extends JPanel {
 	private Ventana ventana;
 	private Empresa empresa;
 
-	public Mercado(final Ventana v) {
+	public PantallaETF(final Ventana v) {
 		setBackground(new Color(0, 204, 153));
 		this.ventana = v;
 		this.empresa = empresa;
@@ -91,21 +93,21 @@ public class Mercado extends JPanel {
 		listaEmpresa.setBackground(new Color(0, 204, 204));
 		scrollPane.setViewportView(listaEmpresa);
 		listaEmpresa.setLayout(new BoxLayout(listaEmpresa, BoxLayout.Y_AXIS));
-		final ArrayList<Empresa> todos = Empresa.getTodos();
+		final ArrayList<ETF> todos = ETF.getTodos();
 		botonActualizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
 					for (int i = 0; i < todos.size(); i++) {
-						listaEmpresa.add(new ElementoCartera(v, todos.get(i).actualizar()));
+						listaEmpresa.add(new ElementoETF(v, todos.get(i).actualizar()));
 					}
 					repaint();
-					ventana.cambiarAPantalla("Mercado");
+					ventana.cambiarAPantalla("pantallaETF");
 				
 			}
 		});
 		for (int i = 0; i < todos.size(); i++) {
-			listaEmpresa.add(new ElementoCartera(v, todos.get(i)));
+			listaEmpresa.add(new ElementoETF(v, todos.get(i)));
 		}
 
 	}

@@ -443,7 +443,7 @@ public class Empresa {
 		try {
 
 			Random r = new Random();
-			float min = 0;
+			float min = -3;
 			float max = 3;
 			for (float i = min; i <= max; i++) {
 				this.valor = (float) (valor + (Math.random() * (max - min)) + min);
